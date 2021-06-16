@@ -118,22 +118,12 @@ console.log(pagesCount)
 
 // uniqueElement
 
-// TODO
-// - find more elegant way
 function uniqueElement(arr) {
     let unique = []
 
-    for(let i = 0; i < arr.length; i++) {
-        let hasDuplacate = false;
-        
-        if(arr.filter(el => el === arr[i]).length > 1) {
-            hasDuplacate = true
-        }
-
-        if(!hasDuplacate) {
-            unique.push(arr[i])
-        }
-    }
+    arr.map(
+        (el, index, thisArray) => thisArray.filter(subEl => subEl === el).length === 1 ? unique.push(el) : null
+    )
 
     return unique.length === 1 ? unique[0] : undefined
 }
