@@ -46,7 +46,7 @@ Array.prototype.reduce = function (callback, initialValue) {
   }
 
   let result = initialValue === undefined ? this[0] : initialValue;
-  let startIndex = initialValue === undefined ? 1 : 0;
+  const startIndex = initialValue === undefined ? 1 : 0;
 
   for (let i = startIndex; i < this.length; i++) {
     result = callback(result, this[i], i, this);
@@ -55,7 +55,7 @@ Array.prototype.reduce = function (callback, initialValue) {
   return result;
 };
 
-const notes = [
+const NOTES = [
   {
     id: 1,
     title: "Recipe",
@@ -94,26 +94,24 @@ const notes = [
 
 // map testing
 
-console.log(notes);
+console.log(NOTES);
 
-const modifiedNotes = notes.map((el) => {
-  return {
-    id: el.id,
-    title: el.title,
-  };
-});
+const modifiedNotes = NOTES.map((note) => ({
+  id: note.id,
+  title: note.title,
+}));
 
 console.log(modifiedNotes);
 
 // filter testing
 
-const markedNotes = notes.filter((el) => el.isMarked);
+const markedNotes = NOTES.filter((note) => note.isMarked);
 
 console.log(markedNotes);
 
 // reduce testing
 
-const pagesCount = notes.reduce((prev, el) => prev + el.pagesCount, 0);
+const pagesCount = NOTES.reduce((result, note) => result + note.pagesCount, 0);
 
 console.log(pagesCount);
 
