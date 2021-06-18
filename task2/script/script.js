@@ -1,7 +1,5 @@
 // A task
 
-// TODO
-// overwrite .bind
 function bind(callback, context) {
   if (typeof callback !== "function") {
     throw new TypeError(callback + " is not a function");
@@ -14,11 +12,11 @@ function bind(callback, context) {
   return function (arg) {
     let self = new Object(context);
 
-    self.boundFunction = function () {
+    self.__boundFunction = function () {
       eval(callback.toString())(arg);
     };
 
-    self.boundFunction(arg);
+    self.__boundFunction(arg);
   };
 }
 
