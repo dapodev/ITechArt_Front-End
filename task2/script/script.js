@@ -1,5 +1,7 @@
 // A task
 
+// TODO
+// overwrite .bind
 function bind(callback, context) {
   if (typeof callback !== "function") {
     throw new TypeError(callback + " is not a function");
@@ -9,15 +11,23 @@ function bind(callback, context) {
     throw new TypeError("context null or not defined");
   }
 
-  return callback.bind(context);
+  return function (arg) {
+    let self = new Object(context);
+
+    self.boundFunction = function () {
+      eval(callback.toString())(arg);
+    };
+
+    self.boundFunction(arg);
+  };
 }
 
 window.x = 1;
 const context = { x: 2 };
 
-function testThis(y) {
+const testThis = (y) => {
   console.log(`x=${this.x}, y=${y}`);
-}
+};
 
 testThis(100); // x=1, y=100
 
