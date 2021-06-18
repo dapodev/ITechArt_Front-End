@@ -25,7 +25,7 @@
     [Look here](https://codepen.io/wooz1ewu/pen/OJpqOYj?editors=0011)
 
 ### 7.  unqiueElement function
->   Write an implementation of uniqueElement function, which gets an array of numbers and returns an unique element if there are no other unique elements or returns undefined   otherwise
+>   Write an implementation of uniqueElement function, which gets an array of numbers and returns an unique element if there are no other unique elements or returns undefined otherwise  
     [Look here](https://codepen.io/wooz1ewu/pen/qBrvpWd?editors=1111)  
 
 
