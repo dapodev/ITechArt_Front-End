@@ -1,8 +1,8 @@
 # Task 1
 ---
 ### 1.  Map polyfill
->   Write your implementation of map function.
->   [Look here](https://codepen.io/wooz1ewu/pen/KKWEymy)
+>   Write your implementation of map function.  
+    [Look here](https://codepen.io/wooz1ewu/pen/KKWEymy)
 
 ### 2.  Map testing
 >   Bring array to a form [{id: …, title: … },...] using map function
