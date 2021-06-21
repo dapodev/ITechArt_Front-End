@@ -46,3 +46,21 @@
 >   ## 2.   Synchronised text inputs.  
 >   Write a code that will synchronise values of text input in 3 seconds after user stopped printing text.  
 >   [Look here](https://codepen.io/wooz1ewu/pen/jOBoNMj)
+
+
+#   Task 4
+>   ##  1.   Promise  
+>   Complete the code using Promise. Function must print 'hi' in 2 seconds.  
+>   [Look here](https://codepen.io/wooz1ewu/pen/PopvYaV?editors=1111)
+>
+>   ##  2.  Let/Var  
+>   Rewrite code so to print 'D0', 'D1'... in right order.  
+>   [Look here](https://codepen.io/wooz1ewu/pen/OJpYLoG)
+>
+>   ##  3.  Promise with delay check  
+>   Write a promise, that prints in console.log some text if programm execution time is less than 2 seconds and prints error message to console.error otherwise. Catch the error.  
+>   [Look here](https://codepen.io/wooz1ewu/pen/mdWYbQQ?editors=1111)
+>   
+>   ##  4.  Async/await  
+>   Replace recursion in demoGithubUser function with cycle, using async/await.  
+>   [Look here](https://codepen.io/wooz1ewu/pen/gOmJYEE)
