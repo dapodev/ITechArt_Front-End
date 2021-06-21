@@ -36,3 +36,13 @@
 >   ## 2.  Bind, call, aplly work
 >   Write code to print expected output using call, apply, bind  
 >   [Look here](https://codepen.io/wooz1ewu/pen/ZEePvQZ?editors=1111)
+
+
+#   Task 3
+>   ## 1.   Timeout and interval functions.   
+>   Write an implementation of function, that will search for "Pending" status cell in table and change it to "Done" status. Only one change in one function check. Stop interval when there are no "pending" statuses.  
+>   [Look here](https://codepen.io/wooz1ewu/pen/PopvYZB?editors=1111)
+>
+>   ## 2.   Synchronised text inputs.  
+>   Write a code that will synchronise values of text input in 3 seconds after user stopped printing text.  
+>   [Look here](https://codepen.io/wooz1ewu/pen/jOBoNMj)
