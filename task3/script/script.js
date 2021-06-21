@@ -32,20 +32,7 @@ let keyUpTimer;
 
 window.onload = () => {
   document.querySelector(".checking-start").addEventListener("click", () => {
-    setTimeout(() => {
-      const interval = setInterval(() => {
-        console.log("Check started..");
-
-        for (let i = 0; i < DOWNLOADS.length; i++) {
-          if (DOWNLOADS[i].status === "Pending") {
-            DOWNLOADS[i].status = "Done";
-            return;
-          }
-        }
-
-        clearInterval(interval);
-      }, 5000);
-    }, 3000);
+    checkStatuses();
   });
 
   document.querySelector(".task-B-form").addEventListener("keyup", (event) => {
@@ -58,6 +45,30 @@ window.onload = () => {
     }, 1000);
   });
 };
+
+const STATUS_COLUMN_INDEX = 2;
+
+function checkStatuses() {
+  setTimeout(() => {
+    const interval = setInterval(() => {
+      console.log("Check started..");
+
+      let table = document.querySelector("#status-table");
+
+      for (let i = 0; i < table.rows.length; i++) {
+        let cell = table.rows[i].cells[STATUS_COLUMN_INDEX];
+
+        if (cell.innerText === "Pending") {
+          cell.innerText = "Done";
+          return;
+        }
+      }
+
+      console.log("Check finished");
+      clearInterval(interval);
+    }, 5000);
+  }, 3000);
+}
 
 // Task B
 // TODO
