@@ -9,15 +9,23 @@ function bind(callback, context) {
     throw new TypeError("context null or not defined");
   }
 
-  return callback.bind(context);
+  return function (arg) {
+    let self = new Object(context);
+
+    self.__boundFunction = function () {
+      eval(callback.toString())(arg);
+    };
+
+    self.__boundFunction(arg);
+  };
 }
 
 window.x = 1;
 const context = { x: 2 };
 
-function testThis(y) {
+const testThis = (y) => {
   console.log(`x=${this.x}, y=${y}`);
-}
+};
 
 testThis(100); // x=1, y=100
 
