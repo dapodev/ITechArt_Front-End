@@ -46,10 +46,7 @@ const promise = new Promise((resolve, reject) => {
   setTimeout(() => {
     if (delay > ACCEPTABLE_DELAY) {
       reject(
-        "Delay " +
-          delay +
-          " is too long. Max acceptable delay is " +
-          ACCEPTABLE_DELAY
+        `Delay ${delay} is too long. Max acceptable delay is ${ACCEPTABLE_DELAY}`
       );
     }
 

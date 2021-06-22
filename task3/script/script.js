@@ -31,12 +31,13 @@ const DOWNLOADS = [
 const STATUSES = {
   pending: "Pending",
   done: "Done",
-  failed: "Failed"
-}
+  failed: "Failed",
+};
 
 let keyUpTimer;
 
 const TEXTFIELDS_SYNCHRONISATION_DELAY = 1000;
+
 window.onload = () => {
   document.querySelector(".checking-start").addEventListener("click", () => {
     checkStatuses();
