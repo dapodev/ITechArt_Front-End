@@ -36,6 +36,7 @@ const STATUSES = {
 
 let keyUpTimer;
 
+const TEXTFIELDS_SYNCHRONISATION_DELAY = 1000;
 window.onload = () => {
   document.querySelector(".checking-start").addEventListener("click", () => {
     checkStatuses();
@@ -48,7 +49,7 @@ window.onload = () => {
 
     keyUpTimer = setTimeout(() => {
       synchroniseFields(className);
-    }, 1000);
+    }, TEXTFIELDS_SYNCHRONISATION_DELAY);
   });
 };
 
