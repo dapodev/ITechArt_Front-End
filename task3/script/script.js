@@ -61,7 +61,7 @@ function checkStatuses() {
     const interval = setInterval(() => {
       console.log("Check started..");
 
-      let table = document.querySelector("#status-table");
+      const table = document.querySelector("#status-table");
 
       for (let i = 0; i < table.rows.length; i++) {
         let cell = table.rows[i].cells[STATUS_COLUMN_INDEX];
