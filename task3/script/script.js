@@ -28,6 +28,12 @@ const DOWNLOADS = [
   },
 ];
 
+const STATUSES = {
+  pending: "Pending",
+  done: "Done",
+  failed: "Failed"
+}
+
 let keyUpTimer;
 
 window.onload = () => {
@@ -47,6 +53,8 @@ window.onload = () => {
 };
 
 const STATUS_COLUMN_INDEX = 2;
+const INTERVAL_DELAY = 5000;
+const TIMEOUT_DELAY = 3000;
 
 function checkStatuses() {
   setTimeout(() => {
@@ -58,16 +66,16 @@ function checkStatuses() {
       for (let i = 0; i < table.rows.length; i++) {
         let cell = table.rows[i].cells[STATUS_COLUMN_INDEX];
 
-        if (cell.innerText === "Pending") {
-          cell.innerText = "Done";
+        if (cell.innerText === STATUSES.pending) {
+          cell.innerText = STATUSES.done;
           return;
         }
       }
 
       console.log("Check finished");
       clearInterval(interval);
-    }, 5000);
-  }, 3000);
+    }, INTERVAL_DELAY);
+  }, TIMEOUT_DELAY);
 }
 
 // Task B
