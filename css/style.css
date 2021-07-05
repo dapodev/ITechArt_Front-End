@@ -12,7 +12,6 @@ a {
 }
 
 .header {
-    height: 165px;
 }
 
 .logo {
@@ -122,8 +121,8 @@ a {
 }
 
 .slider__image {
-    height: 547px;
-    width: 1230px;
+    height: inherit;
+    width: inherit;
 }
 
 .short-info-section {
@@ -215,6 +214,7 @@ a {
 .info-links {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .info-links-section__info-links {
@@ -395,6 +395,7 @@ a {
     font-size: 18px;
     display: flex;
     width: 260px;
+    overflow: hidden;
     letter-spacing: 3px;
     margin: 10px 10px 0px;
     padding: 10px;
@@ -425,6 +426,7 @@ a {
 
 .tabs__content {
     display: none;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 

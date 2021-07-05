@@ -1,24 +1,21 @@
-@media (min-width: 768px) {
+@media (min-width: 412px) {
     .navigation-menu {
-        list-style: none;
-        font-weight: 300;
-        width: 690px;
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
+        flex-direction: column;
+        margin: 20px auto;
+        width: auto;
         text-align: center;
     }
-    
+
     .slider {
-        width: 768px;
+        width: 412px;
     }
 
     .slider__controls {
-        width: 768px;
+        width: 412px;
     }
 
     .slider__info {
-        display: block;
+        display: none;
     }
 
     .info-cart__info {
@@ -30,7 +27,7 @@
     }
 
     .tabs {
-        width: 768px;
+        width: 412px;
     }
 
     .tabs__content-card {
@@ -46,18 +43,18 @@
     }
 
     .tabs__switch-title {
-        display: inline;
+        display: none;
     }
 
     .tabs__separator {
-        display: block;
+        display: none;
     }
 
     .contacts {
-        min-width: 768px;
+        min-width: 412px;
     }
 
     .contact-subsection__map {
-        width: 450px;
+        width: 400px;
     }
 }
