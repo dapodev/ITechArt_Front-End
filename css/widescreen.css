@@ -1,0 +1,29 @@
+@media (min-width: 1024px) {
+    .slider {
+        width: 1024px;
+    }
+
+    .slider__controls {
+        width: 1024px;
+    }
+
+    .tabs {
+        width: 1024px;
+    }
+
+    .tabs__content-card {
+        width: 470px;
+    }
+
+    .tabs__content-image {
+        width: 470px;
+    }
+
+    .contacts {
+        min-width: 1024px;
+    }
+
+    .contact-subsection__map {
+        width: 450px;
+    }
+}
