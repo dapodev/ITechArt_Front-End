@@ -127,8 +127,7 @@ a {
 }
 
 .short-info-section {
-    padding-top: 69px;
-    height: 380px;
+    padding: 69px 0;
     box-sizing: border-box;
     box-shadow: rgb(0 0 0 / 25%) 0px 8px 4px -6px;
     margin: 0 auto;
@@ -190,6 +189,7 @@ a {
     line-height: 25px;
     margin-top: 26px;
     color: #9d9d9d;
+    word-wrap: break-word;
 }
 
 .short-info__more-button {
@@ -463,6 +463,7 @@ a {
     margin: 0 auto;
     justify-content: space-around;
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
 .contact-subsection {

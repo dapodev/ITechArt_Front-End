@@ -1,10 +1,10 @@
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
     .slider {
-        width: 1024px;
+        width: 768px;
     }
 
     .slider__controls {
-        width: 1024px;
+        width: 768px;
     }
 
     .info-cart__info {
@@ -12,23 +12,23 @@
     }
 
     .info-cart__icon {
-        display: block;
+        display: none;
     }
 
     .tabs {
-        width: 1024px;
+        width: 768px;
     }
 
     .tabs__content-card {
-        width: 470px;
+        width: 350px;
     }
 
     .tabs__content-image {
-        width: 470px;
+        width: 350px;
     }
 
     .contacts {
-        min-width: 1024px;
+        min-width: 768px;
     }
 
     .contact-subsection__map {
