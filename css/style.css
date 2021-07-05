@@ -119,7 +119,7 @@ a {
 
 .slider__image {
     height: inherit;
-    width: inherit;
+    width: 1024px;
 }
 
 .short-info-section {

@@ -1,4 +1,4 @@
-const IMAGE_WIDTH = 1230;
+const IMAGE_WIDTH = 1024;
 const IMAGE_COUNT = 4;
 const MAX_OFFSET = (IMAGE_COUNT - 1) * IMAGE_WIDTH;
 
