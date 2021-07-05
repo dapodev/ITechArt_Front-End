@@ -14,10 +14,6 @@
         width: 412px;
     }
 
-    .slider__info {
-        display: none;
-    }
-
     .info-cart__info {
         width: 220px;
     }
@@ -56,5 +52,47 @@
 
     .contact-subsection__map {
         width: 400px;
+    }
+
+    /* font-size adjustment */
+    
+    .slider__title {
+        font-size: 20px;
+    }
+
+    .slider__subtitle {
+        font-size: 14px;
+    }
+
+    .short-info__title {
+        font-size: 22px;
+    } 
+    
+    .short-info__subtitle {
+        font-size: 16px;
+    }
+    
+    .short-info__preamble {
+        font-size: 15px;
+    }
+
+    .short-info__text {
+        font-size: 11px;
+    }
+
+    .short-info__more-button {
+        font-size: 14px;
+    }
+
+    .search-panel__title {
+        font-size: 22px;
+    }
+
+    .search-panel__subtitle {
+        font-size: 18px;
+    }
+
+    .tabs__tab-switch {
+        font-size: 12px;
     }
 }
