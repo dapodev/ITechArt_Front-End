@@ -61,8 +61,7 @@ a {
 }
 
 .slider {
-    width: 1230px;
-    height: 547px;
+    max-width: 1230px;
     overflow: hidden;
     position: relative;
 }
@@ -72,15 +71,21 @@ a {
 }
 
 .slider__controls {
-    height: 122px;
-    width: 1230px;
     position: absolute;
     z-index: 30;
     background: rgb(0, 0, 0, 0.45);
     bottom: 0px;
     text-align: center;
     display: flex;
+    width: 100%;
     justify-content: space-between;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.slider__image {
+    height: auto;
+    width: 100vw;
 }
 
 .slider__title {
@@ -88,7 +93,6 @@ a {
     font-size: 34px;
     font-weight: 900;
     color: #fff;
-    margin-top: 30px;
     letter-spacing: 3px;
 }
 
@@ -102,7 +106,6 @@ a {
 .slider__control-arrow {
     width: 32px;
     height: 32px;
-    margin: 43px 31px;
 }
 
 .slider__control-arrow:hover {
@@ -110,16 +113,9 @@ a {
 }
 
 .slider__line {
-    height: 547px;
-    width: 4920px;
     display: flex;
     flex-direction: row;
     transition: ease-in-out 1s margin-left;
-}
-
-.slider__image {
-    height: inherit;
-    width: 1024px;
 }
 
 .short-info-section {
@@ -375,7 +371,6 @@ a {
 }
 
 .tabs {
-    width: 1170px;
     margin: 62px auto;
 }
 
@@ -391,7 +386,7 @@ a {
     font-style: normal;
     font-size: 18px;
     display: flex;
-    width: 260px;
+    width: auto;
     overflow: hidden;
     letter-spacing: 3px;
     margin: 10px 10px 0px;
@@ -440,16 +435,19 @@ a {
 .tabs__content-card {
     font-weight: 400;
     font-style: normal;
-    width: 520px;
+    width: 45vw;
     font-size: 15px;
     color: #9d9d9d;
+}
+
+.tabs__content-image {
+    width: 45vw;
 }
 
 .tabs__content-card-text {
     margin-top: 22px;
     line-height: 24px;
 }
-
 
 .contacts-section {
     background-color: #333333;

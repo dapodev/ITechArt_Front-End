@@ -8,15 +8,6 @@
         flex-direction: row;
         text-align: center;
     }
-    
-    .slider {
-        width: 768px;
-        height: 547px;
-    }
-
-    .slider__controls {
-        width: 768px;
-    }
 
     .info-cart__info {
         width: 220px;
@@ -26,28 +17,26 @@
         display: none;
     }
 
-    .tabs {
-        width: 768px;
-    }
-
-    .tabs__content-card {
-        width: 350px;
-    }
-
-    .tabs__content-image {
-        width: 350px;
-    }
-
-    .tabs__tab-switch {
-        width: auto;
-    }
-
     .tabs__switch-title {
         display: inline;
     }
 
     .tabs__separator {
         display: block;
+    }
+
+    .tabs__content {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .tabs__content-card {
+        width: 45vw;
+        margin: 0px;
+    }
+
+    .tabs__content-image {
+        width: 45vw;
     }
 
     .contacts {

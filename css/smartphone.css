@@ -6,15 +6,6 @@
         text-align: center;
     }
 
-    .slider {
-        width: 412px;
-        height: 352px;
-    }
-
-    .slider__controls {
-        width: 412px;
-    }
-
     .info-cart__info {
         width: 220px;
     }
@@ -23,28 +14,26 @@
         display: none;
     }
 
-    .tabs {
-        width: 412px;
-    }
-
-    .tabs__content-card {
-        width: 350px;
-    }
-
-    .tabs__content-image {
-        width: 350px;
-    }
-
-    .tabs__tab-switch {
-        width: auto;
-    }
-
     .tabs__switch-title {
         display: none;
     }
 
     .tabs__separator {
         display: none;
+    }
+    
+    .tabs__content {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .tabs__content-card {
+        width: 95vw;
+        margin: 10px;
+    }
+
+    .tabs__content-image {
+        width: 95vw;
     }
 
     .contacts {
