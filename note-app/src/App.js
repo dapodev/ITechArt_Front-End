@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import MyNotes from './pages/myNotes/myNotes';
+import NoteItem from './components/note-list/item/NoteItem';
 
 function App() {
+  const notes = [
+    {
+      title: 'some title',
+      description: 'somedesc',
+      creation: new Date().toDateString(),
+    },
+    {
+      title: 'some title',
+      description: 'somedesc',
+      creation: new Date().toDateString(),
+    },
+    {
+      title: 'some title',
+      description: 'somedesc',
+      creation: new Date().toDateString(),
+    },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MyNotes noteList={notes}></MyNotes>
     </div>
   );
 }
