@@ -5,9 +5,12 @@ export const Styles = {
     margin: '0 auto',
   },
 
-  infoDisplay: {
-    margin: '20px 0',
-    width: '45vw',
-    minWidth: '350px',
+  sideInfoDisplay: {
+    backgroundColor: '#000',
+    width: '100%'
+  },
+
+  sideNotePanel: {
+    width: '27vw',
   }
 };

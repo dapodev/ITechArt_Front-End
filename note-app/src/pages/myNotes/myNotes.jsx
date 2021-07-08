@@ -1,6 +1,7 @@
 import React from 'react';
 import NoteList from '../../components/note-list/noteList';
 import { Styles } from './styles';
+import { TextField } from '@material-ui/core'
 
 function MyNotes() {
   const notes = [
@@ -42,16 +43,16 @@ function MyNotes() {
   }
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-      <div>
-        <h1 style={{ textAlign: 'center', color: '#f1c40f' }}>My notes</h1>
+    <div style={{ display: 'flex' }}>
+      <div style={Styles.sideNotePanel}>
+        <TextField variant='outlined' color='white' label='Search' style={{color: 'white', margin: '5px'}}></TextField>
         <NoteList
           style={Styles.noteList}
           notes={noteList}
           onSelect={onSelectNote}
         ></NoteList>
       </div>
-      <div style={Styles.infoDisplay}>
+      <div style={Styles.sideInfoDisplay}>
         {activeNote === null ? (
           <h4>Select note to display</h4>
         ) : (

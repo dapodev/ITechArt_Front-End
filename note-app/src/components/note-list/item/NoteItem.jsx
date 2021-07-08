@@ -4,16 +4,16 @@ import { Styles } from './styles';
 import { Button } from '@material-ui/core';
 
 function NoteItem({ note, onSelect }) {
-  let wrapperStyle;
+  let totalWrapperStyle;
 
   if (note.isActive) {
-    wrapperStyle = { ...Styles.itemWrapper, ...Styles.itemWrapper_active };
+    totalWrapperStyle = { ...Styles.itemWrapper, ...Styles.itemWrapper_active };
   } else {
-    wrapperStyle = { ...Styles.itemWrapper };
+    totalWrapperStyle = { ...Styles.itemWrapper };
   }
 
   return (
-    <div style={wrapperStyle} onClick={onSelect.bind(null, note)}>
+    <div style={totalWrapperStyle} onClick={onSelect.bind(null, note)}>
       <div style={Styles.itemContent}>
         <p style={Styles.itemTitle}>{note.title}</p>
         <p>
