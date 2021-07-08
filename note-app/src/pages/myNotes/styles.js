@@ -1,7 +1,7 @@
 export const Styles = {
   noteList: {
-    width: '35vw',
-    minWidth: '450px',
+    width: '25vw',
+    minWidth: '280px',
     margin: '0 auto',
   }
 };

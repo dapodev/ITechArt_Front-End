@@ -19,7 +19,16 @@ export const Styles = {
   },
 
   closeButton: {
-    margin: '20px 0',
-    color: '#fff',
+    margin: '45px 0',
+    color: 'orange',
+    backgroundColor: 'rgb(255, 255, 255, 0.85)',
+    height: '30px',
+  },
+
+  itemWrapper_active: {
+    backgroundColor: '#fff',
+    color: '#f1c40f',
+    boxShadow: '#f1c40f 0 0 5px',
+    transition: '0.3s',
   }
 };
