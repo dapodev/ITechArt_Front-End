@@ -5,20 +5,20 @@ import { Styles } from './styles';
 function MyNotes() {
   const notes = [
     {
-      title: 'some title 1',
-      description: 'some loooooooooooooooooooooong desc',
-      creation: new Date().toDateString(),
+      title: 'Finish task 1 React',
+      description: 'Reat is sooooooooooooooooooooooooooooo cooooooooooooooooooool!!!',
+      creation: new Date('July 7, 2021 15:45:00').toDateString(),
       isActive: false,
     },
     {
-      title: 'some title 2',
-      description: 'somedesc',
-      creation: new Date().toDateString(),
+      title: 'Have a lunch',
+      description: 'Some meat balls are waiting for me..',
+      creation: new Date('July 7, 2021 16:00:00').toDateString(),
       isActive: false,
     },
     {
-      title: 'some title 3',
-      description: 'somedesc',
+      title: 'Just an empty note',
+      description: 'Almost empty',
       creation: new Date().toDateString(),
       isActive: false,
     },
@@ -51,10 +51,16 @@ function MyNotes() {
           onSelect={onSelectNote}
         ></NoteList>
       </div>
-      <div>
-        {
-          activeNote === null ? 'Select note to display' : activeNote.title
-        }
+      <div style={Styles.infoDisplay}>
+        {activeNote === null ? (
+          <h4>Select note to display</h4>
+        ) : (
+          <div>
+            <p>{activeNote.title}</p>
+            <p>{activeNote.description}</p>
+            <p>{activeNote.creation}</p>
+          </div>
+        )}
       </div>
     </div>
   );
