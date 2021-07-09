@@ -2,7 +2,7 @@
   "name": "note-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://wooz1ewu.github.io/ITechArt_Front-End",
+  "homepage": "git@github.com:wooz1ewu/ITechArt_Front-End.git",
   "dependencies": {
     "@material-ui/core": "^4.12.0",
     "@testing-library/jest-dom": "^5.14.1",
