@@ -1,1 +1,0 @@
-# ITechArt. React training.
