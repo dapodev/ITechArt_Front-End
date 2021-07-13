@@ -1,5 +1,5 @@
 import React from 'react';
-import NoteItem from './item/NoteItem';
+import NoteItem from './__note-item/NoteItem';
 import PropTypes from 'prop-types'
 
 function NoteList({ style, notes, onSelect }) {

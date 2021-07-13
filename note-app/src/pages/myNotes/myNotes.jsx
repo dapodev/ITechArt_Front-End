@@ -1,13 +1,12 @@
 import React from 'react';
-import NoteList from '../../components/note-list/noteList';
+import NoteList from '../../components/note-list/NoteList';
 import { Styles } from './styles';
-import { TextField } from '@material-ui/core'
 
 function MyNotes() {
   const notes = [
     {
       title: 'Finish task 1 React',
-      description: 'Reat is sooooooooooooooooooooooooooooo cooooooooooooooooooool!!!',
+      description: 'React is sooooooooooooooooooooooooooooo cooooooooooooooooooool!!!',
       creation: new Date('July 7, 2021 15:45:00').toDateString(),
       isActive: false,
     },
@@ -43,9 +42,8 @@ function MyNotes() {
   }
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
       <div style={Styles.sideNotePanel}>
-        <TextField variant='outlined' color='white' label='Search' style={{color: 'white', margin: '5px'}}></TextField>
         <NoteList
           style={Styles.noteList}
           notes={noteList}
@@ -53,15 +51,17 @@ function MyNotes() {
         ></NoteList>
       </div>
       <div style={Styles.sideInfoDisplay}>
-        {activeNote === null ? (
-          <h4>Select note to display</h4>
-        ) : (
-          <div>
-            <p>{activeNote.title}</p>
-            <p>{activeNote.description}</p>
-            <p>{activeNote.creation}</p>
-          </div>
-        )}
+        <div>
+          {activeNote === null ? (
+            <h4>Select note to display</h4>
+            ) : (
+              <div>
+              <p>{activeNote.title}</p>
+              <p>{activeNote.description}</p>
+              <p>{activeNote.creation}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

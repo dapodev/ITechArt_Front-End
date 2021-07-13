@@ -7,7 +7,9 @@ export const Styles = {
 
   sideInfoDisplay: {
     backgroundColor: '#000',
-    width: '100%'
+    color: 'rgb(255, 255, 255, 0.6)',
+    width: '100%',
+    padding: '30px',
   },
 
   sideNotePanel: {
