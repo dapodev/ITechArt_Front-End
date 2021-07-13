@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Dosis:wght@300&family=Indie+Flower&display=swap');
 
 body {
   margin: 0;
@@ -7,6 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Dosis', sans-serif;
+  background-color: '#1e1e1e';
 }
 
 code {

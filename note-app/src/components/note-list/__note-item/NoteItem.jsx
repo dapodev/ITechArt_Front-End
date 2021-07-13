@@ -22,7 +22,7 @@ function NoteItem({ note, onSelect }) {
             : note.description.substring(0, 20) + '...'}
         </p>
         <p>
-          <i>{note.creation}</i>
+          {note.creation}
         </p>
       </div>
       <Button style={Styles.closeButton}>&#10008;</Button>

@@ -1,12 +1,14 @@
 import React from 'react';
 import NoteList from '../../components/note-list/NoteList';
+import DisplayedNote from '../../components/displayed-note/DisplayedNote';
 import { Styles } from './styles';
 
 function MyNotes() {
   const notes = [
     {
       title: 'Finish task 1 React',
-      description: 'React is sooooooooooooooooooooooooooooo cooooooooooooooooooool!!!',
+      description:
+        'React is sooooooooooooooooooooooooooooo cooooooooooooooooooool!!!',
       creation: new Date('July 7, 2021 15:45:00').toDateString(),
       isActive: false,
     },
@@ -51,17 +53,7 @@ function MyNotes() {
         ></NoteList>
       </div>
       <div style={Styles.sideInfoDisplay}>
-        <div>
-          {activeNote === null ? (
-            <h4>Select note to display</h4>
-            ) : (
-              <div>
-              <p>{activeNote.title}</p>
-              <p>{activeNote.description}</p>
-              <p>{activeNote.creation}</p>
-            </div>
-          )}
-        </div>
+        <DisplayedNote activeNote={activeNote}></DisplayedNote>
       </div>
     </div>
   );

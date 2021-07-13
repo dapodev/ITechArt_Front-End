@@ -2,7 +2,6 @@ export const Styles = {
   itemWrapper: {
     backgroundColor: '#333333',
     color: '#609BEB',
-    fontFamily: 'Courier New',
     padding: '10px',
     margin: '10px',
     borderRadius: '3px',
