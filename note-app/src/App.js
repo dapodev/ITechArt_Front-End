@@ -1,5 +1,5 @@
 import React from 'react';
-import MyNotes from './pages/myNotes/myNotes';
+import MyNotes from './pages/MyNotes/MyNotes';
 
 function App() {
   return (

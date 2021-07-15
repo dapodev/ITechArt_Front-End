@@ -1,6 +1,6 @@
 import React from 'react';
-import NoteList from '../../components/note-list/NoteList';
-import DisplayedNote from '../../components/displayed-note/DisplayedNote';
+import NoteList from '../../components/NoteList/NoteList';
+import DisplayedNote from '../../components/DisplayedNote/DisplayedNote';
 import { Styles } from './styles';
 
 function MyNotes() {
@@ -44,7 +44,7 @@ function MyNotes() {
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div style={Styles.pageBody}>
       <div style={Styles.sideNotePanel}>
         <NoteList
           style={Styles.noteList}

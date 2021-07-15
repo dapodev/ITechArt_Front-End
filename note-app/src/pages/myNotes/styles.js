@@ -13,5 +13,10 @@ export const Styles = {
 
   sideNotePanel: {
     width: '27vw',
+  },
+
+  pageBody: {
+    display: 'flex',
+    minHeight: '100vh',
   }
 };
