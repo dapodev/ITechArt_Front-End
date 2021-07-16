@@ -1,62 +1,52 @@
 import React from 'react';
+
 import NoteList from '../../components/NoteList/NoteList';
 import DisplayedNote from '../../components/DisplayedNote/DisplayedNote';
-import { Styles } from './styles';
+import { styles } from './styles';
 
-function MyNotes() {
-  const notes = [
+const MyNotes = () => {
+  const NOTES = [
     {
+      id: 1,
       title: 'Finish task 1 React',
       description:
         'React is sooooooooooooooooooooooooooooo cooooooooooooooooooool!!!',
       creation: new Date('July 7, 2021 15:45:00').toDateString(),
-      isActive: false,
     },
     {
+      id: 2,
       title: 'Have a lunch',
       description: 'Some meat balls are waiting for me..',
       creation: new Date('July 7, 2021 16:00:00').toDateString(),
-      isActive: false,
     },
     {
+      id: 3,
       title: 'Just an empty note',
       description: 'Almost empty',
       creation: new Date().toDateString(),
-      isActive: false,
     },
   ];
 
-  const [noteList, setNoteList] = React.useState(notes);
+  const [noteList, setNoteList] = React.useState(NOTES);
   const [activeNote, setActiveNote] = React.useState(null);
 
-  function onSelectNote(selectedNote) {
-    setNoteList(
-      noteList.map((note) => {
-        if (note === selectedNote) {
-          note.isActive = true;
-          setActiveNote(selectedNote);
-        } else {
-          note.isActive = false;
-        }
-        return note;
-      })
-    );
-  }
+  const onSelectNote = (selectedNote) => setActiveNote(selectedNote);
 
   return (
-    <div style={Styles.pageBody}>
-      <div style={Styles.sideNotePanel}>
+    <div style={styles.pageBody}>
+      <div style={styles.sideNotePanel}>
         <NoteList
-          style={Styles.noteList}
+          style={styles.noteList}
           notes={noteList}
           onSelect={onSelectNote}
-        ></NoteList>
+          activeNote={activeNote}
+        />
       </div>
-      <div style={Styles.sideInfoDisplay}>
-        <DisplayedNote activeNote={activeNote}></DisplayedNote>
+      <div style={styles.sideInfoDisplay}>
+        <DisplayedNote activeNote={activeNote} />
       </div>
     </div>
   );
-}
+};
 
 export default MyNotes;

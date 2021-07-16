@@ -1,21 +1,21 @@
 import React from 'react';
-import NoteItem from './NoteItem/NoteItem';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-function NoteList({ style, notes, onSelect }) {
-  return (
-    <div style={style}>
-      {notes.map((note, index) => {
-        return <NoteItem note={note} key={index} onSelect={onSelect}></NoteItem>;
-      })}
-    </div>
-  );
-}
+import NoteItem from './NoteItem/NoteItem';
+
+const NoteList = ({ style, notes, onSelect, activeNote }) => (
+  <div style={style}>
+    {notes.map((note, index) => (
+      <NoteItem note={note} key={index} onSelect={onSelect} isActive={activeNote && activeNote.id === note.id} />
+    ))}
+  </div>
+);
 
 NoteList.propTypes = {
   style: PropTypes.object.isRequired,
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSelect: PropTypes.func.isRequired,
-}
+  activeNote: PropTypes.object.isRequired,
+};
 
 export default NoteList;

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import MyNotes from './pages/MyNotes/MyNotes';
 
 function App() {

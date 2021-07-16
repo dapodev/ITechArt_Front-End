@@ -1,38 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Styles } from './styles';
 import { Button } from '@material-ui/core';
 
-function NoteItem({ note, onSelect }) {
-  let totalWrapperStyle;
+import getNoteDescription from '../../../utils/getNoteDescription';
+import { styles } from './styles';
 
-  if (note.isActive) {
-    totalWrapperStyle = { ...Styles.itemWrapper, ...Styles.itemWrapper_active };
-  } else {
-    totalWrapperStyle = { ...Styles.itemWrapper };
-  }
+const NoteItem = ({ note, onSelect, isActive }) => {
+  const wrapperStyle = {
+    ...styles.itemWrapper,
+    ...(isActive && { ...styles.itemWrapper_active }),
+  };
 
   return (
-    <div style={totalWrapperStyle} onClick={onSelect.bind(null, note)}>
-      <div style={Styles.itemContent}>
-        <p style={Styles.itemTitle}>{note.title}</p>
-        <p>
-          {note.description.length < 20
-            ? note.description
-            : note.description.substring(0, 20) + '...'}
-        </p>
-        <p>
-          {note.creation}
-        </p>
+    <div style={wrapperStyle} onClick={onSelect.bind(null, note)}>
+      <div style={styles.itemContent}>
+        <p style={styles.itemTitle}>{note.title}</p>
+        <p>{getNoteDescription(note)}</p>
+        <p>{note.creation}</p>
       </div>
-      <Button style={Styles.closeButton}>&#10008;</Button>
+      <Button style={styles.closeButton}>&#10008;</Button>
     </div>
   );
-}
+};
 
 NoteItem.propTypes = {
   note: PropTypes.object.isRequired,
   onSelect: PropTypes.func,
+  isActive: PropTypes.bool,
 };
 
 export default NoteItem;

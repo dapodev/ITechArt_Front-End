@@ -1,4 +1,4 @@
-export const Styles = {
+export const styles = {
   itemWrapper: {
     backgroundColor: '#333333',
     color: '#609BEB',

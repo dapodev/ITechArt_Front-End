@@ -1,4 +1,4 @@
-export const Styles = {
+export const styles = {
   noteList: {
     width: '25vw',
     minWidth: '280px',
