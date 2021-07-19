@@ -24,6 +24,38 @@ export const styles = {
   },
 
   noNoteMessage: {
-      fontSize: '40px',
-  }
+    fontSize: '40px',
+  },
+
+  noteMenu: {
+    float: 'right',
+  },
+
+  menuButton: {
+    color: '#609BEB',
+    padding: '5px',
+    minWidth: 0,
+    margin: '0 5px',
+  },
+
+  noteInput: {
+    color: 'rgb(255,255,255,0.6)',
+    backgroundColor: 'transparent',
+    fontSize: '18px',
+    border: 'solid 1px #609BEB',
+    padding: '10px',
+    display: 'block',
+    marginTop: '20px',
+    width: '40vw',
+  },
+
+  applyButton: {
+    color: '#609BEB',
+    backgroundColor: 'transparent',
+    marginTop: '20px',
+  },
+
+  editPanel: {
+    display: 'none',
+  },
 };
