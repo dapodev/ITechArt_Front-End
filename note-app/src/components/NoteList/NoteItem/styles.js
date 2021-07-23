@@ -13,7 +13,7 @@ export const styles = {
       textTransform: 'uppercase',
       fontWeight: 'bold',
       fontSize: '24px',
-      margin: '5px 0',
+      margin: '5px 5px',
   },
 
   closeButton: {

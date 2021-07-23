@@ -6,10 +6,24 @@ import { styles } from './styles';
 import { NOTES } from '../../config/constants';
 
 const MyNotes = () => {
-  const [noteList, setNoteList] = React.useState(NOTES);
+  const [noteList, setNoteList] = React.useState(
+    JSON.parse(localStorage.getItem('noteList'))
+      ? JSON.parse(localStorage.getItem('noteList'))
+      : NOTES
+  );
   const [activeNote, setActiveNote] = React.useState(null);
+  const [isEditOn, setEditMode] = React.useState(false);
 
-  const onSelectNote = (selectedNote) => setActiveNote(selectedNote);
+  const onSelectNote = (selectedNote) =>
+    isEditOn ? null : setActiveNote(selectedNote);
+
+  const saveNotesLocal = (notes) =>
+    localStorage.setItem('noteList', JSON.stringify(notes));
+
+  const onEdited = () => {
+    setNoteList(noteList);
+    saveNotesLocal(noteList);
+  };
 
   return (
     <div style={styles.pageBody}>
@@ -22,7 +36,11 @@ const MyNotes = () => {
         />
       </div>
       <div style={styles.sideInfoDisplay}>
-        <DisplayedNote activeNote={activeNote} />
+        <DisplayedNote
+          activeNote={activeNote}
+          onEdited={onEdited}
+          setEditing={setEditMode}
+        />
       </div>
     </div>
   );
