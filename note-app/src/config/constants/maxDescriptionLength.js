@@ -1,3 +1,0 @@
-const MAX_DESCRIPTION_LENGTH = 20;
-
-export default MAX_DESCRIPTION_LENGTH;

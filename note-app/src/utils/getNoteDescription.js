@@ -1,4 +1,4 @@
-import MAX_DESCRIPTION_LENGTH from "../config/constants/maxDescriptionLength";
+import { MAX_DESCRIPTION_LENGTH } from "../config/constants";
 
 const getNoteDescription = (note) =>
   note.description

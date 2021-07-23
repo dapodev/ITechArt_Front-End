@@ -5,14 +5,14 @@ import { styles } from './styles';
 
 const DisplayedNote = ({ activeNote }) => (
   <div style={styles.wrapper}>
-    {!activeNote ? (
-      <p style={styles.noNoteMessage}>Select note to display</p>
-    ) : (
+    {activeNote ? (
       <div>
         <p style={styles.noteTitle}>{activeNote.title}</p>
         <p style={styles.noteDescription}>{activeNote.description}</p>
         <p style={styles.noteCreation}>{activeNote.creation}</p>
       </div>
+    ) : (
+      <p style={styles.noNoteMessage}>Select note to display</p>
     )}
   </div>
 );
