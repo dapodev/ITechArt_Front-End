@@ -13,6 +13,9 @@ const DisplayedNote = ({ activeNote, onEdited, setEditing }) => {
   const changeNoteForm = React.createRef();
   const noteMenu = React.createRef();
 
+  const [titleValue, setTitleValue] = React.useState('');
+  const [descValue, setDescValue] = React.useState('');
+
   const onEditClick = (event) => {
     setTitleValue(activeNote.title);
     setDescValue(activeNote.description);
@@ -45,9 +48,6 @@ const DisplayedNote = ({ activeNote, onEdited, setEditing }) => {
 
   const getRevertedDisplay = (refered) =>
     refered.current.style.display === 'none' ? 'block' : 'none';
-
-  const [titleValue, setTitleValue] = React.useState('');
-  const [descValue, setDescValue] = React.useState('');
 
   return (
     <div style={styles.wrapper}>

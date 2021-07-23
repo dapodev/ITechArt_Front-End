@@ -38,8 +38,6 @@ const MyNotes = () => {
   const onSelectNote = (selectedNote) =>
     isEditOn ? null : setActiveNote(selectedNote);
 
-  // use effect???
-
   const saveNotesLocal = (notes) =>
     localStorage.setItem('noteList', JSON.stringify(notes));
 
