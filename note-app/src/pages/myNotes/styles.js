@@ -18,5 +18,14 @@ export const styles = {
   pageBody: {
     display: 'flex',
     minHeight: '100vh',
-  }
+  },
+
+  editPanelWrapper: {
+    boxShadow: '#609BEB 0 0 7px 2px',
+    margin: '20px',
+    padding: '5px 25px',
+    borderRadius: '5px',
+    transition: 'box-shadow 0.3s',
+    backgroundColor: '#333333',
+  },
 };

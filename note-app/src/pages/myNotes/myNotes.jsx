@@ -4,6 +4,7 @@ import NoteList from '../../components/NoteList/NoteList';
 import DisplayedNote from '../../components/DisplayedNote/DisplayedNote';
 import { styles } from './styles';
 import { NOTES } from '../../config/constants';
+import EditNotePanel from '../../components/EditNotePanel/EditNotePanel';
 
 const MyNotes = () => {
   const [noteList, setNoteList] = React.useState(
@@ -21,8 +22,13 @@ const MyNotes = () => {
     localStorage.setItem('noteList', JSON.stringify(notes));
 
   const onEdited = () => {
+    setEditMode(false);
     setNoteList(noteList);
     saveNotesLocal(noteList);
+  };
+
+  const onCanceled = () => {
+    setEditMode(false);
   };
 
   return (
@@ -38,9 +44,21 @@ const MyNotes = () => {
       <div style={styles.sideInfoDisplay}>
         <DisplayedNote
           activeNote={activeNote}
-          onEdited={onEdited}
+          isEditing={isEditOn}
           setEditing={setEditMode}
         />
+        <div
+          style={{
+            ...styles.editPanelWrapper,
+            display: isEditOn ? 'block' : 'none',
+          }}
+        >
+          <EditNotePanel
+            onEdited={onEdited}
+            activeNote={activeNote}
+            onCanceled={onCanceled}
+          />
+        </div>
       </div>
     </div>
   );
