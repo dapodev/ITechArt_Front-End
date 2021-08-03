@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 import { Input } from 'antd';
@@ -6,10 +6,10 @@ import { Input } from 'antd';
 import { styles } from './styles';
 
 const EditNotePanel = ({ onEdited, activeNote, onCanceled }) => {
-  const [titleValue, setTitleValue] = React.useState('');
-  const [descValue, setDescValue] = React.useState('');
+  const [titleValue, setTitleValue] = useState('');
+  const [descValue, setDescValue] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTitleValue(activeNote ? activeNote.title : '');
     setDescValue(activeNote ? activeNote.description : '');
   }, [activeNote]);
@@ -20,14 +20,10 @@ const EditNotePanel = ({ onEdited, activeNote, onCanceled }) => {
     activeNote.title = titleValue;
     activeNote.description = descValue;
 
-    if (onEdited) {
-      onEdited();
-    }
+    onEdited();
   };
   const onCancelClick = (event) => {
-    if (onCanceled) {
-      onCanceled();
-    }
+    onCanceled();
   };
 
   return (
@@ -55,9 +51,9 @@ const EditNotePanel = ({ onEdited, activeNote, onCanceled }) => {
 };
 
 EditNotePanel.propTypes = {
-  onEdited: PropTypes.func,
+  onEdited: PropTypes.func.isRequired,
   activeNote: PropTypes.object,
-  onCanceled: PropTypes.func,
+  onCanceled: PropTypes.func.isRequired,
 };
 
 export default EditNotePanel;

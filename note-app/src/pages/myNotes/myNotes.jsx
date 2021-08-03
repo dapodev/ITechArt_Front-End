@@ -1,25 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import NoteList from '../../components/NoteList/NoteList';
 import DisplayedNote from '../../components/DisplayedNote/DisplayedNote';
 import { styles } from './styles';
-import { NOTES } from '../../config/constants';
+import { NOTES, STORAGE_NOTES_CELL } from '../../config/constants';
 import EditNotePanel from '../../components/EditNotePanel/EditNotePanel';
 
 const MyNotes = () => {
-  const [noteList, setNoteList] = React.useState(
-    JSON.parse(localStorage.getItem('noteList'))
-      ? JSON.parse(localStorage.getItem('noteList'))
+  const [noteList, setNoteList] = useState(
+    JSON.parse(localStorage.getItem(STORAGE_NOTES_CELL))
+      ? JSON.parse(localStorage.getItem(STORAGE_NOTES_CELL))
       : NOTES
   );
-  const [activeNote, setActiveNote] = React.useState(null);
-  const [isEditOn, setEditMode] = React.useState(false);
+  const [activeNote, setActiveNote] = useState(null);
+  const [isEditOn, setEditMode] = useState(false);
 
   const onSelectNote = (selectedNote) =>
     isEditOn ? null : setActiveNote(selectedNote);
 
   const saveNotesLocal = (notes) =>
-    localStorage.setItem('noteList', JSON.stringify(notes));
+    localStorage.setItem(STORAGE_NOTES_CELL, JSON.stringify(notes));
 
   const onEdited = () => {
     setEditMode(false);

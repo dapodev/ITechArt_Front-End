@@ -21,3 +21,5 @@ export const NOTES = [
     creation: new Date().toDateString(),
   },
 ];
+
+export const STORAGE_NOTES_CELL = 'noteList';

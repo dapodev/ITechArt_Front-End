@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import NoteItem from './NoteItem/NoteItem';
 
-const NoteList = ({ style, notes, onSelect, activeNote, disabled }) => (
+const NoteList = ({ style, notes, onSelect, activeNote }) => (
   <div style={style}>
     {notes.map((note, index) => (
       <NoteItem note={note} key={index} onSelect={onSelect} isActive={activeNote && activeNote.id === note.id}/>
@@ -16,7 +16,6 @@ NoteList.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSelect: PropTypes.func.isRequired,
   activeNote: PropTypes.object,
-  disabled: PropTypes.bool,
 };
 
 export default NoteList;
