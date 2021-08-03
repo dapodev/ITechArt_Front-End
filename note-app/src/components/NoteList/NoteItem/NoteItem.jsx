@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '@material-ui/core';
 
 import getNoteDescription from '../../../utils/getNoteDescription';
 import { styles } from './styles';
@@ -18,7 +17,6 @@ const NoteItem = ({ note, onSelect, isActive }) => {
         <p>{getNoteDescription(note)}</p>
         <p>{note.creation}</p>
       </div>
-      <Button style={styles.closeButton}>&#10008;</Button>
     </div>
   );
 };

@@ -4,7 +4,6 @@ export const styles = {
     margin: '20px',
     padding: '5px 25px',
     borderRadius: '5px',
-    lineHeight: '20px',
     transition: 'box-shadow 0.3s',
     backgroundColor: '#333333',
   },
@@ -24,6 +23,17 @@ export const styles = {
   },
 
   noNoteMessage: {
-      fontSize: '40px',
-  }
+    fontSize: '40px',
+  },
+
+  noteMenu: {
+    float: 'right',
+  },
+
+  menuButton: {
+    color: '#609BEB',
+    padding: '5px',
+    minWidth: 0,
+    margin: '0 5px',
+  },
 };
