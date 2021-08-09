@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ITechArt_Front-End/static/css/main.8a1bf8fa.chunk.css",
-    "main.js": "/ITechArt_Front-End/static/js/main.a0a0567b.chunk.js",
-    "main.js.map": "/ITechArt_Front-End/static/js/main.a0a0567b.chunk.js.map",
+    "main.js": "/ITechArt_Front-End/static/js/main.1696fda0.chunk.js",
+    "main.js.map": "/ITechArt_Front-End/static/js/main.1696fda0.chunk.js.map",
     "runtime-main.js": "/ITechArt_Front-End/static/js/runtime-main.106b3768.js",
     "runtime-main.js.map": "/ITechArt_Front-End/static/js/runtime-main.106b3768.js.map",
     "static/js/2.6db5899b.chunk.js": "/ITechArt_Front-End/static/js/2.6db5899b.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.106b3768.js",
     "static/js/2.6db5899b.chunk.js",
     "static/css/main.8a1bf8fa.chunk.css",
-    "static/js/main.a0a0567b.chunk.js"
+    "static/js/main.1696fda0.chunk.js"
   ]
 }
