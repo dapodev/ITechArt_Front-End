@@ -13,7 +13,7 @@ import SharedNotes from './pages/SharedNotes/SharedNotes';
 
 function App() {
   return (
-    <Router>
+    <Router basename='/ITechArt_Front-End'>
       <div style={{ backgroundColor: '#1f1f1f', minHeight: '100vh' }}>
         <Switch>
           <Route exact path="/">
