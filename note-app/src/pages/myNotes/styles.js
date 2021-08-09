@@ -21,7 +21,6 @@ export const styles = {
   },
 
   editPanelWrapper: {
-    boxShadow: '#609BEB 0 0 7px 2px',
     margin: '20px',
     padding: '5px 25px',
     borderRadius: '5px',

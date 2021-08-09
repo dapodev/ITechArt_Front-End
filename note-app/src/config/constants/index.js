@@ -23,3 +23,5 @@ export const NOTES = [
 ];
 
 export const STORAGE_NOTES_CELL = 'noteList';
+
+export const NAVPANEL_WIDTH = '24.7vw';

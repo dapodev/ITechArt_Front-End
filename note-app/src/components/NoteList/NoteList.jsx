@@ -6,7 +6,12 @@ import NoteItem from './NoteItem/NoteItem';
 const NoteList = ({ style, notes, onSelect, activeNote }) => (
   <div style={style}>
     {notes.map((note, index) => (
-      <NoteItem note={note} key={index} onSelect={onSelect} isActive={activeNote && activeNote.id === note.id}/>
+      <NoteItem
+        note={note}
+        key={index}
+        onSelect={onSelect}
+        isActive={activeNote && activeNote.id === note.id}
+      />
     ))}
   </div>
 );

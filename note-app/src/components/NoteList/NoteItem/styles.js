@@ -3,7 +3,7 @@ export const styles = {
     backgroundColor: '#333333',
     color: '#609BEB',
     padding: '10px',
-    margin: '10px',
+    margin: '0px 10px 10px',
     borderRadius: '3px',
     display: 'flex',
     justifyContent: 'space-between'
