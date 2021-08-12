@@ -10,7 +10,7 @@ const NoteList = ({ style, notes, onSelect, activeNote }) => (
         note={note}
         key={index}
         onSelect={onSelect}
-        isActive={activeNote && activeNote.id === note.id}
+        isActive={activeNote?.id === note.id}
       />
     ))}
   </div>

@@ -25,3 +25,11 @@ export const NOTES = [
 export const STORAGE_NOTES_CELL = 'noteList';
 
 export const NAVPANEL_WIDTH = '24.7vw';
+
+export const ROUTES = {
+  myNotes: '/my-notes',
+  sharedNotes: '/shared-notes',
+  about: '/about',
+  notFound: '/not-found',
+  root: '/',
+};
