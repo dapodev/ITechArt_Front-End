@@ -5,8 +5,9 @@ import DisplayedNote from '../../components/DisplayedNote/DisplayedNote';
 import { styles } from './styles';
 import { NOTES, STORAGE_NOTES_CELL } from '../../config/constants';
 import EditNotePanel from '../../components/EditNotePanel/EditNotePanel';
+import PageLayout from '../../components/common/PageLayout/PageLayout';
 
-const MyNotes = () => {
+const MyNotes = (props) => {
   const [noteList, setNoteList] = useState(
     JSON.parse(localStorage.getItem(STORAGE_NOTES_CELL))
       ? JSON.parse(localStorage.getItem(STORAGE_NOTES_CELL))
@@ -32,35 +33,37 @@ const MyNotes = () => {
   };
 
   return (
-    <div style={styles.pageBody}>
-      <div style={styles.sideNotePanel}>
-        <NoteList
-          style={styles.noteList}
-          notes={noteList}
-          onSelect={onSelectNote}
-          activeNote={activeNote}
-        />
-      </div>
-      <div style={styles.sideInfoDisplay}>
-        <DisplayedNote
-          activeNote={activeNote}
-          isEditing={isEditOn}
-          setEditing={setEditMode}
-        />
-        <div
-          style={{
-            ...styles.editPanelWrapper,
-            display: isEditOn ? 'block' : 'none',
-          }}
-        >
-          <EditNotePanel
-            onEdited={onEdited}
+    <PageLayout>
+      <div style={styles.pageBody}>
+        <div style={styles.sideNotePanel}>
+          <NoteList
+            style={styles.noteList}
+            notes={noteList}
+            onSelect={onSelectNote}
             activeNote={activeNote}
-            onCanceled={onCanceled}
           />
         </div>
+        <div style={styles.sideInfoDisplay}>
+          <DisplayedNote
+            activeNote={activeNote}
+            isEditing={isEditOn}
+            setEditing={setEditMode}
+          />
+          <div
+            style={{
+              ...styles.editPanelWrapper,
+              display: isEditOn ? 'block' : 'none',
+            }}
+          >
+            <EditNotePanel
+              onEdited={onEdited}
+              activeNote={activeNote}
+              onCanceled={onCanceled}
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 
