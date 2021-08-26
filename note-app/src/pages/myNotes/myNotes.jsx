@@ -1,16 +1,32 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
+import { Button } from '@material-ui/core';
+import { ExitToApp } from '@material-ui/icons';
 
 import NoteList from '../../components/NoteList/NoteList';
 import DisplayedNote from '../../components/DisplayedNote/DisplayedNote';
 import { styles } from './styles';
-import { NOTES, STORAGE_NOTES_CELL } from '../../config/constants';
+import {
+  ACTION_TYPES,
+  NOTES,
+  ROUTES,
+  STORAGE_NOTES_CELL,
+} from '../../config/constants';
 import EditNotePanel from '../../components/EditNotePanel/EditNotePanel';
 import PageLayout from '../../components/common/PageLayout/PageLayout';
+import { getCurrentUser, getIsLogged } from '../../utils/selectors';
 
-const MyNotes = (props) => {
+const MyNotes = ({ store }) => {
   const [noteList, setNoteList] = useState(
-    JSON.parse(localStorage.getItem(STORAGE_NOTES_CELL))
-      ? JSON.parse(localStorage.getItem(STORAGE_NOTES_CELL))
+    localStorage.getItem(
+      `${getCurrentUser(store)?.email}_${STORAGE_NOTES_CELL}`
+    )
+      ? JSON.parse(
+          localStorage.getItem(
+            `${getCurrentUser(store)?.email}_${STORAGE_NOTES_CELL}`
+          )
+        )
       : NOTES
   );
   const [activeNote, setActiveNote] = useState(null);
@@ -20,7 +36,10 @@ const MyNotes = (props) => {
     isEditOn ? null : setActiveNote(selectedNote);
 
   const saveNotesLocal = (notes) =>
-    localStorage.setItem(STORAGE_NOTES_CELL, JSON.stringify(notes));
+    localStorage.setItem(
+      `${getCurrentUser(store)?.email}_${STORAGE_NOTES_CELL}`,
+      JSON.stringify(notes)
+    );
 
   const onEdited = () => {
     setEditMode(false);
@@ -32,6 +51,10 @@ const MyNotes = (props) => {
     setEditMode(false);
   };
 
+  if (!getIsLogged(store)) {
+    return <Redirect to={ROUTES.signIn} />;
+  }
+
   return (
     <PageLayout>
       <div style={styles.pageBody}>
@@ -42,6 +65,15 @@ const MyNotes = (props) => {
             onSelect={onSelectNote}
             activeNote={activeNote}
           />
+          <Button
+            onClick={() => {
+              store.dispatch({ type: ACTION_TYPES.signOut });
+            }}
+            style={styles.logOutButton}
+            title="Log out"
+          >
+            <ExitToApp style={styles.logOutIcon} />
+          </Button>
         </div>
         <div style={styles.sideInfoDisplay}>
           <DisplayedNote
@@ -65,6 +97,10 @@ const MyNotes = (props) => {
       </div>
     </PageLayout>
   );
+};
+
+MyNotes.propTypes = {
+  store: PropTypes.object.isRequired,
 };
 
 export default MyNotes;

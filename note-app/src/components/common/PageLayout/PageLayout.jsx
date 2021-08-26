@@ -8,7 +8,7 @@ import { styles } from './styles';
 const PageLayout = ({ children }) => {
   const [isMenuShown, setMenuMode] = useState(false);
 
-  const onMenuClick = (event) => {
+  const onMenuClick = () => {
     setMenuMode(!isMenuShown);
   };
 
