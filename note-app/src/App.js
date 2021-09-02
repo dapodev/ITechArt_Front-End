@@ -7,31 +7,18 @@ import {
 } from 'react-router-dom';
 import { createStore } from 'redux';
 
-import { ACTION_TYPES, CURRENT_USER_CELL, ROUTES } from './config/constants';
+import PrivateRoute from './components/common/PrivateRoute/PrivateRoute';
 import About from './pages/About/About';
 import MyNotes from './pages/MyNotes/MyNotes';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import SharedNotes from './pages/SharedNotes/SharedNotes';
 import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
+import { CURRENT_USER_CELL, ROUTES } from './config/constants';
+import { AuthorizeReducer } from './utils/reducers';
 import { getCurrentUser } from './utils/selectors';
 
 function App() {
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case ACTION_TYPES.signOut:
-        localStorage.removeItem(CURRENT_USER_CELL);
-        return { ...state, loggedInUser: null };
-      case ACTION_TYPES.signIn:
-        localStorage.setItem(CURRENT_USER_CELL, JSON.stringify(action.payload));
-        return { ...state, loggedInUser: action.payload };
-      default:
-        break;
-    }
-
-    return state;
-  };
-
   const [isLoggedIn, setLoggedIn] = useState(
     JSON.parse(localStorage.getItem(CURRENT_USER_CELL)) ? true : false
   );
@@ -41,7 +28,7 @@ function App() {
     isLoggedIn: isLoggedIn,
   };
 
-  const store = createStore(reducer, initialState);
+  const store = createStore(AuthorizeReducer, initialState);
 
   store.subscribe(() => {
     setLoggedIn(getCurrentUser(store) ? true : false);
@@ -55,10 +42,14 @@ function App() {
             <Redirect to={ROUTES.myNotes} />
           </Route>
           <Route path={ROUTES.myNotes}>
-            <MyNotes store={store} />
+            {/* <PrivateRoute> */}
+              <MyNotes store={store} />
+            {/* </PrivateRoute> */}
           </Route>
           <Route path={ROUTES.sharedNotes}>
-            <SharedNotes store={store} />
+            <PrivateRoute>
+              <SharedNotes store={store} />
+            </PrivateRoute>
           </Route>
           <Route path={ROUTES.about}>
             <About />

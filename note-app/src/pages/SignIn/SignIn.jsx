@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { Input } from 'antd';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import PageLayout from '../../components/common/PageLayout/PageLayout';
@@ -43,10 +43,6 @@ const SignIn = ({ store }) => {
   const [alertType, setAlertType] = useState('');
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
     setSnackOpen(false);
   };
 
@@ -59,8 +55,10 @@ const SignIn = ({ store }) => {
     }, SNACKBAR_DURATION);
   };
 
+  const history = useHistory();
+
   if (getIsLogged(store)) {
-    return <Redirect to={ROUTES.myNotes} />;
+    history.push(ROUTES.myNotes);
   }
 
   return (

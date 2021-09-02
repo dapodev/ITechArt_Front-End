@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { Input } from 'antd';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import PropTypes from 'prop-types';
@@ -10,20 +10,14 @@ import PageLayout from '../../components/common/PageLayout/PageLayout';
 import { styles } from './styles';
 import {
   ACTION_TYPES,
-  EMAIL_PATTERN,
-  NAME_PATTERN,
-  PASSWORD_PATTERN,
   ROUTES,
   USER_LIST_CELL,
   SNACKBAR_DURATION,
 } from '../../config/constants';
 import { getIsLogged } from '../../utils/selectors';
+import { SignUpValidations } from '../../utils/validations/SignUpValidations';
 
 const SignUp = ({ store }) => {
-  const emailValidator = new RegExp(EMAIL_PATTERN);
-  const nameValidator = new RegExp(NAME_PATTERN);
-  const passwordValidator = new RegExp(PASSWORD_PATTERN);
-
   const onRegistration = (form) => {
     const newUser = {
       email: form.email,
@@ -53,43 +47,10 @@ const SignUp = ({ store }) => {
   };
 
   const validateForm = (values) => {
-    const errors = {};
-
-    if (!values.email) {
-      errors.email = 'E-mail is required!';
-    } else if (!emailValidator.test(values.email)) {
-      errors.email = 'E-mail is not in a correct form!';
-    }
-
-    if (!values.firstName) {
-      errors.firstName = 'First name is neccessary!';
-    } else if (!nameValidator.test(values.firstName)) {
-      errors.firstName = 'First name has incorrect form.';
-    }
-
-    if (!values.lastName) {
-      errors.lastName = 'Last name is neccessary!';
-    } else if (!nameValidator.test(values.lastName)) {
-      errors.lastName = 'Last name has incorrect form.';
-    }
-
-    if (!values.birth) {
-      errors.birth = 'Birthday is required!';
-    } else if (new Date() <= new Date(values.birth)) {
-      errors.birth = 'Incorrect date!';
-    }
-
-    if (!values.password) {
-      errors.password = 'Pick a password.';
-    } else if (!passwordValidator.test(values.password)) {
-      errors.password = 'Password is too weak.';
-    }
-
-    if (!values.confirmPassword) {
-      errors.confirmPassword = 'Confirm your password.';
-    } else if (values.password !== values.confirmPassword) {
-      errors.confirmPassword = 'Passwords are not equal.';
-    }
+    const errors = SignUpValidations.reduce(
+      (deltaErrors, validator) => validator(values, deltaErrors),
+      {}
+    );
 
     return errors;
   };
@@ -115,8 +76,10 @@ const SignUp = ({ store }) => {
     }, SNACKBAR_DURATION);
   };
 
+  const history = useHistory();
+
   if (getIsLogged(store)) {
-    return <Redirect to={ROUTES.myNotes} />;
+    history.push(ROUTES.myNotes);
   }
 
   return (

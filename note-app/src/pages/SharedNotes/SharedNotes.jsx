@@ -1,6 +1,6 @@
 import React from 'react';
-import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
 
 import NoteList from '../../components/NoteList/NoteList';
 import { styles } from './styles';
