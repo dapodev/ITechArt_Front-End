@@ -38,7 +38,7 @@ export const ROUTES = {
   root: '/',
 };
 
-export const EMAIL_PATTERN = '^[a-zA-Z0-9_.]+@[a-z]+.[a-z]+$'; // fix bug apollo@gma
+export const EMAIL_PATTERN = /\S+@\S+\.\S+/;
 
 export const NAME_PATTERN = '^[A-Z][a-z]+(-[A-Z][a-z]+)*$';
 
@@ -47,6 +47,9 @@ export const PASSWORD_PATTERN = '^[a-zA-Z0-9_.]{8,}$';
 export const ACTION_TYPES = {
   signIn: 'LOG/IN',
   signOut: 'LOG/OUT',
+  signUp: 'SIGN/UP',
+  signInRequest: 'LOG/IN_REQUEST',
+  signUpRequest: 'SIGN/UP_REQUEST',
 };
 
 export const SNACKBAR_DURATION = 2000;

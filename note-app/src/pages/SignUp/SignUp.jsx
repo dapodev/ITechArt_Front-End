@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { Input } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
-import { Button, Snackbar } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
+import { Button } from '@material-ui/core';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import PageLayout from '../../components/common/PageLayout/PageLayout';
 import { styles } from './styles';
 import {
-  ACTION_TYPES,
   ROUTES,
-  USER_LIST_CELL,
   SNACKBAR_DURATION,
 } from '../../config/constants';
-import { getIsLogged } from '../../utils/selectors';
 import { SignUpValidations } from '../../utils/validations/SignUpValidations';
+import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
+import { mapDispatchToProps } from '../../utils/maps/mapDispatchToProps';
+import Snackbar from '../../components/Snackbar/Snackbar';
 
-const SignUp = ({ store }) => {
+const SignUp = ({ isLoggedIn, signUpRequest }) => {
   const onRegistration = (form) => {
     const newUser = {
       email: form.email,
@@ -27,43 +27,21 @@ const SignUp = ({ store }) => {
       birth: form.birth,
     };
 
-    const userList = JSON.parse(localStorage.getItem(USER_LIST_CELL))
-      ? JSON.parse(localStorage.getItem(USER_LIST_CELL))
-      : [];
-
-    if (userList.filter((user) => user.email === newUser.email).length > 0) {
-      showMessage('User already exists!', 'error');
-    } else {
-      //sucessfully registered
-      userList.push(newUser);
-
-      localStorage.setItem(USER_LIST_CELL, JSON.stringify(userList));
-
-      showMessage('Sucessfully registered.', 'success');
-      setTimeout(() => {
-        store.dispatch({ type: ACTION_TYPES.signIn, payload: newUser });
-      }, SNACKBAR_DURATION);
-    }
+    signUpRequest({newUser, showMessage});
   };
 
   const validateForm = (values) => {
-    const errors = SignUpValidations.reduce(
+    return SignUpValidations.reduce(
       (deltaErrors, validator) => validator(values, deltaErrors),
       {}
     );
-
-    return errors;
   };
 
   const [isSnackOpened, setSnackOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
+  const handleClose = () => {
     setSnackOpen(false);
   };
 
@@ -78,7 +56,7 @@ const SignUp = ({ store }) => {
 
   const history = useHistory();
 
-  if (getIsLogged(store)) {
+  if (isLoggedIn) {
     history.push(ROUTES.myNotes);
   }
 
@@ -161,21 +139,19 @@ const SignUp = ({ store }) => {
           Login
         </Link>
       </h3>
-      <Snackbar open={isSnackOpened}>
-        <Alert
-          severity={alertType}
-          onClose={handleClose}
-          onDurationChange={handleClose}
-        >
-          {alertMessage}
-        </Alert>
-      </Snackbar>
+      <Snackbar
+        isSnackOpened={isSnackOpened}
+        handleClose={handleClose}
+        message={alertMessage}
+        alertType={alertType}
+      />
     </PageLayout>
   );
 };
 
 SignUp.propTypes = {
-  store: PropTypes.object.isRequired,
-};
+  isLoggedIn: PropTypes.bool.isRequired,
+  signUpRequest: PropTypes.func.isRequired,
+}
 
-export default SignUp;
+export default connect(mapStatetoProps, mapDispatchToProps)(SignUp);

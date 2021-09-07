@@ -2,47 +2,31 @@ import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { Input } from 'antd';
 import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import PageLayout from '../../components/common/PageLayout/PageLayout';
+import Snackbar from '../../components/Snackbar/Snackbar';
 import { styles } from './styles';
-import { Button, Snackbar } from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
-import {
-  ACTION_TYPES,
-  ROUTES,
-  SNACKBAR_DURATION,
-  USER_LIST_CELL,
-} from '../../config/constants';
-import { getIsLogged } from '../../utils/selectors';
+import { Button } from '@material-ui/core';
+import { ROUTES, SNACKBAR_DURATION } from '../../config/constants';
+import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
+import { mapDispatchToProps } from '../../utils/maps/mapDispatchToProps';
 
-const SignIn = ({ store }) => {
+const SignIn = ({ isLoggedIn, signInRequest }) => {
   const onLogin = (form) => {
-    const userList = JSON.parse(localStorage.getItem(USER_LIST_CELL))
-      ? JSON.parse(localStorage.getItem(USER_LIST_CELL))
-      : [];
-
-    if (userList.filter((user) => user.email === form.email).length === 0) {
-      showMessage('No such user found!', 'error');
-    } else {
-      const userData = userList.filter((user) => user.email === form.email)[0];
-
-      if (form.password === userData.password) {
-        showMessage('Successfully logged in!', 'success');
-        setTimeout(() => {
-          store.dispatch({ type: ACTION_TYPES.signIn, payload: userData });
-        }, SNACKBAR_DURATION);
-      } else {
-        showMessage('Incorrect password!', 'error');
-      }
-    }
+    const authData = {
+      email: form.email,
+      password: form.password,
+    };
+    signInRequest({ ...authData, showMessage });
   };
 
   const [isSnackOpened, setSnackOpen] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const [alertType, setAlertType] = useState('');
 
-  const handleClose = (event, reason) => {
+  const handleClose = () => {
     setSnackOpen(false);
   };
 
@@ -57,7 +41,7 @@ const SignIn = ({ store }) => {
 
   const history = useHistory();
 
-  if (getIsLogged(store)) {
+  if (isLoggedIn) {
     history.push(ROUTES.myNotes);
   }
 
@@ -100,21 +84,19 @@ const SignIn = ({ store }) => {
           Register
         </Link>
       </h3>
-      <Snackbar open={isSnackOpened}>
-        <Alert
-          severity={alertType}
-          onClose={handleClose}
-          onDurationChange={handleClose}
-        >
-          {alertMessage}
-        </Alert>
-      </Snackbar>
+      <Snackbar
+        isSnackOpened={isSnackOpened}
+        handleClose={handleClose}
+        message={alertMessage}
+        alertType={alertType}
+      />
     </PageLayout>
   );
 };
 
 SignIn.propTypes = {
-  store: PropTypes.object.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  signInRequest: PropTypes.func.isRequired,
 };
 
-export default SignIn;
+export default connect(mapStatetoProps, mapDispatchToProps)(SignIn);

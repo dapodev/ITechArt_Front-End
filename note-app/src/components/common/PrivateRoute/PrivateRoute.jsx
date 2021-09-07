@@ -1,11 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
 import { ROUTES } from '../../../config/constants';
+import { mapStatetoProps } from '../../../utils/maps/mapStateToProps';
 
-const PrivateRoute = ({ children, isLogged }) => (
+const PrivateRoute = ({ children, isLoggedIn }) => (
   <div>
-    {isLogged ? (
+    {isLoggedIn ? (
       children
     ) : (
         <Redirect to={ROUTES.signIn} />
@@ -13,4 +15,4 @@ const PrivateRoute = ({ children, isLogged }) => (
   </div>
 );
 
-export default PrivateRoute;
+export default connect(mapStatetoProps)(PrivateRoute);
