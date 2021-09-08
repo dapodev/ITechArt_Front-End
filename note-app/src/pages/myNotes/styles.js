@@ -27,4 +27,15 @@ export const styles = {
     transition: 'box-shadow 0.3s',
     backgroundColor: '#333333',
   },
+
+  logOutButton: {
+    borderRadius: '50%',
+  },
+
+  logOutIcon: {
+    color: '#609BEB',
+    width: '32px',
+    height: '32px',
+    margin: '10px',
+  },
 };

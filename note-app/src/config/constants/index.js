@@ -23,6 +23,8 @@ export const NOTES = [
 ];
 
 export const STORAGE_NOTES_CELL = 'noteList';
+export const USER_LIST_CELL = 'userList';
+export const CURRENT_USER_CELL = 'currentUser';
 
 export const NAVPANEL_WIDTH = '24.7vw';
 
@@ -31,5 +33,23 @@ export const ROUTES = {
   sharedNotes: '/shared-notes',
   about: '/about',
   notFound: '/not-found',
+  signIn: '/sign-in',
+  signUp: '/sign-up',
   root: '/',
 };
+
+export const EMAIL_PATTERN = /\S+@\S+\.\S+/;
+
+export const NAME_PATTERN = '^[A-Z][a-z]+(-[A-Z][a-z]+)*$';
+
+export const PASSWORD_PATTERN = '^[a-zA-Z0-9_.]{8,}$';
+
+export const ACTION_TYPES = {
+  signIn: 'LOG/IN',
+  signOut: 'LOG/OUT',
+  signUp: 'SIGN/UP',
+  signInRequest: 'LOG/IN_REQUEST',
+  signUpRequest: 'SIGN/UP_REQUEST',
+};
+
+export const SNACKBAR_DURATION = 2000;

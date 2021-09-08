@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Button } from '@material-ui/core';
+import { ExitToApp } from '@material-ui/icons';
+import { connect } from 'react-redux';
 
 import NoteList from '../../components/NoteList/NoteList';
 import DisplayedNote from '../../components/DisplayedNote/DisplayedNote';
@@ -6,11 +10,15 @@ import { styles } from './styles';
 import { NOTES, STORAGE_NOTES_CELL } from '../../config/constants';
 import EditNotePanel from '../../components/EditNotePanel/EditNotePanel';
 import PageLayout from '../../components/common/PageLayout/PageLayout';
+import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
+import { mapDispatchToProps } from '../../utils/maps/mapDispatchToProps';
 
-const MyNotes = (props) => {
+const MyNotes = ({ loggedInUser, signOut }) => {
   const [noteList, setNoteList] = useState(
-    JSON.parse(localStorage.getItem(STORAGE_NOTES_CELL))
-      ? JSON.parse(localStorage.getItem(STORAGE_NOTES_CELL))
+    localStorage.getItem(`${loggedInUser.email}_${STORAGE_NOTES_CELL}`)
+      ? JSON.parse(
+          localStorage.getItem(`${loggedInUser.email}_${STORAGE_NOTES_CELL}`)
+        )
       : NOTES
   );
   const [activeNote, setActiveNote] = useState(null);
@@ -20,7 +28,10 @@ const MyNotes = (props) => {
     isEditOn ? null : setActiveNote(selectedNote);
 
   const saveNotesLocal = (notes) =>
-    localStorage.setItem(STORAGE_NOTES_CELL, JSON.stringify(notes));
+    localStorage.setItem(
+      `${loggedInUser.email}_${STORAGE_NOTES_CELL}`,
+      JSON.stringify(notes)
+    );
 
   const onEdited = () => {
     setEditMode(false);
@@ -42,6 +53,15 @@ const MyNotes = (props) => {
             onSelect={onSelectNote}
             activeNote={activeNote}
           />
+          <Button
+            onClick={() => {
+              signOut();
+            }}
+            style={styles.logOutButton}
+            title="Log out"
+          >
+            <ExitToApp style={styles.logOutIcon} />
+          </Button>
         </div>
         <div style={styles.sideInfoDisplay}>
           <DisplayedNote
@@ -67,4 +87,9 @@ const MyNotes = (props) => {
   );
 };
 
-export default MyNotes;
+MyNotes.propTypes = {
+  loggedInUser: PropTypes.object.isRequired,
+  signOut: PropTypes.func.isRequired,
+};
+
+export default connect(mapStatetoProps, mapDispatchToProps)(MyNotes);

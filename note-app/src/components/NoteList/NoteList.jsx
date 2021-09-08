@@ -17,7 +17,7 @@ const NoteList = ({ style, notes, onSelect, activeNote }) => (
 );
 
 NoteList.propTypes = {
-  style: PropTypes.object.isRequired,
+  style: PropTypes.object,
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSelect: PropTypes.func.isRequired,
   activeNote: PropTypes.object,
