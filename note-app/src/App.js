@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Redirect,
 } from 'react-router-dom';
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from '@redux-saga/core';
 

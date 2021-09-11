@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '@material-ui/core';
 import { ExitToApp } from '@material-ui/icons';
@@ -6,12 +6,14 @@ import { connect } from 'react-redux';
 
 import NoteList from '../../components/NoteList/NoteList';
 import DisplayedNote from '../../components/DisplayedNote/DisplayedNote';
-import { styles } from './styles';
-import { NOTES, STORAGE_NOTES_CELL } from '../../config/constants';
 import EditNotePanel from '../../components/EditNotePanel/EditNotePanel';
 import PageLayout from '../../components/common/PageLayout/PageLayout';
+import NotePanelMenu from '../../components/NotePanelMenu/NotePanelMenu';
+import { styles } from './styles';
+import { NOTES, STORAGE_NOTES_CELL } from '../../config/constants';
 import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
 import { mapDispatchToProps } from '../../utils/maps/mapDispatchToProps';
+import { setLocalNoteList } from '../../utils/localStorage';
 
 const MyNotes = ({ loggedInUser, signOut }) => {
   const [noteList, setNoteList] = useState(
@@ -27,26 +29,19 @@ const MyNotes = ({ loggedInUser, signOut }) => {
   const onSelectNote = (selectedNote) =>
     isEditOn ? null : setActiveNote(selectedNote);
 
-  const saveNotesLocal = (notes) =>
-    localStorage.setItem(
-      `${loggedInUser.email}_${STORAGE_NOTES_CELL}`,
-      JSON.stringify(notes)
-    );
-
   const onEdited = () => {
     setEditMode(false);
     setNoteList(noteList);
-    saveNotesLocal(noteList);
+    setLocalNoteList(noteList, loggedInUser);
   };
 
-  const onCanceled = () => {
-    setEditMode(false);
-  };
+  const onCanceled = () => setEditMode(false);
 
   return (
     <PageLayout>
       <div style={styles.pageBody}>
         <div style={styles.sideNotePanel}>
+          <NotePanelMenu refreshNotes={setNoteList} />
           <NoteList
             style={styles.noteList}
             notes={noteList}
@@ -68,6 +63,8 @@ const MyNotes = ({ loggedInUser, signOut }) => {
             activeNote={activeNote}
             isEditing={isEditOn}
             setEditing={setEditMode}
+            refreshNotes={setNoteList}
+            onDeleted={() => setActiveNote(null)}
           />
           <div
             style={{

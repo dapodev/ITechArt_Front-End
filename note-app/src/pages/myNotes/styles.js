@@ -17,7 +17,6 @@ export const styles = {
 
   pageBody: {
     display: 'flex',
-    minHeight: '100vh',
   },
 
   editPanelWrapper: {

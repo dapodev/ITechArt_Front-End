@@ -50,6 +50,8 @@ export const ACTION_TYPES = {
   signUp: 'SIGN/UP',
   signInRequest: 'LOG/IN_REQUEST',
   signUpRequest: 'SIGN/UP_REQUEST',
+  addNote: 'ADD_NOTE',
+  delNote: 'DEL_NOTE',
 };
 
 export const SNACKBAR_DURATION = 2000;

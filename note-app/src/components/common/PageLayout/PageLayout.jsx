@@ -13,7 +13,7 @@ const PageLayout = ({ children }) => {
   };
 
   return (
-    <div>
+    <div style={styles.wrapper}>
       <div>
         <NavPanel isOpened={isMenuShown} setIsOpened={setMenuMode} />
         <Button style={styles.menuButton} onClick={onMenuClick}>

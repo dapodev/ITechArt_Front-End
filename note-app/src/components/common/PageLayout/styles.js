@@ -16,4 +16,8 @@ export const styles = {
     position: 'relative',
     zIndex: '1000',
   },
+
+  wrapper: {
+    heigh: '100vh',
+  },
 };
