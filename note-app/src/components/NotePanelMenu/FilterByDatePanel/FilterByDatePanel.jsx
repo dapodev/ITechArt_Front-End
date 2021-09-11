@@ -2,72 +2,70 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
-import { Button } from '@material-ui/core';
 import { Formik } from 'formik';
+import { Button } from '@material-ui/core';
 import { Input } from 'antd';
 
 import { styles } from './styles';
 import {
-  getLocalCurrentUser,
   getLocalNoteList,
-  setLocalNoteList,
+  getLocalCurrentUser,
 } from '../../../utils/localStorage';
 
-const AddNotePanel = ({ shown, style, handleClose, onAdded }) => {
+const FilterByDatePanel = ({ shown, style, handleClose, onFiltered }) => {
   const wrapperStyle = { ...styles.panelWrapper, ...(style || null) };
 
-  const onAddNote = (data) => {
-    const currentUser = getLocalCurrentUser();
-    const notes = getLocalNoteList(currentUser);
+  const handleFilter = (data) => {
+    const user = getLocalCurrentUser();
+    const notes = getLocalNoteList(user);
 
-    const newNote = {
-      id: getFreeNoteId(notes),
-      title: data.title || 'Default title',
-      description: data.description || 'Default description',
-      creation: new Date().toDateString(),
-    };
+    const filteredNotes = notes.filter(
+      (note) =>
+        new Date(note.creation) >=
+          (data.from ? new Date(data.from) : new Date(note.creation)) &&
+        new Date(note.creation) <=
+          (data.to ? new Date(data.to) : new Date(note.creation))
+    );
 
-    notes.push(newNote);
-    setLocalNoteList(notes, currentUser);
-    onAdded(notes);
+    onFiltered(filteredNotes);
     handleClose();
   };
 
-  const getFreeNoteId = (notes) => {
-    let id = 0;
-    while (true) {
-      // eslint-disable-next-line no-loop-func
-      if (!notes.filter((note) => note.id === id).length) break;
-      id++;
-    }
+  const handleReset = () => {
+    const user = getLocalCurrentUser();
+    const notes = getLocalNoteList(user);
 
-    return id;
+    onFiltered(notes);
+
+    handleClose();
   };
 
   return shown ? (
     <div style={wrapperStyle}>
-      <p style={styles.title}>Add note</p>
+      <p style={styles.title}>Filter notes by date</p>
       <Formik
         initialValues={{
-          title: '',
-          description: '',
+          from: '',
+          to: '',
         }}
-        onSubmit={onAddNote}
+        onSubmit={handleFilter}
       >
         {({ values, handleChange, handleSubmit }) => (
           <form style={styles.loginForm}>
             <Input
-              style={styles.input}
-              placeholder="Note title"
-              name="title"
-              value={values.title}
+              style={styles.datePicker}
+              type="date"
+              name="from"
+              title="Date from"
+              value={values.from}
               onChange={handleChange}
             />
             <Input
-              style={styles.input}
-              placeholder="Note description"
-              name="description"
-              value={values.description}
+              style={styles.datePicker}
+              type="date"
+              name="to"
+              title="Date to"
+              value={values.to}
               onChange={handleChange}
             />
             <div style={styles.buttonsContainer}>
@@ -75,14 +73,14 @@ const AddNotePanel = ({ shown, style, handleClose, onAdded }) => {
                 style={styles.commonButton}
                 type="submit"
                 onClick={handleSubmit}
-                title="Add note"
+                title="Apply"
               >
                 <CheckIcon style={styles.commonIcon} />
               </Button>
               <Button
                 style={styles.commonButton}
-                onClick={handleClose}
-                title="Cancel"
+                onClick={handleReset}
+                title="Reset"
               >
                 <ClearIcon style={styles.commonIcon} />
               </Button>
@@ -94,11 +92,11 @@ const AddNotePanel = ({ shown, style, handleClose, onAdded }) => {
   ) : null;
 };
 
-AddNotePanel.propTypes = {
+FilterByDatePanel.propTypes = {
   shown: PropTypes.bool.isRequired,
   style: PropTypes.object,
   handleClose: PropTypes.func.isRequired,
-  onAdded: PropTypes.func.isRequired,
+  onFiltered: PropTypes.func.isRequired,
 };
 
-export default AddNotePanel;
+export default FilterByDatePanel;

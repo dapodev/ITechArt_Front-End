@@ -11,7 +11,7 @@ const NoteItem = ({ note, onSelect, isActive }) => {
   };
 
   return (
-    <div style={wrapperStyle} onClick={onSelect.bind(null, note)}>
+    <div style={wrapperStyle} onClick={() => onSelect(note)}>
       <div style={styles.itemContent}>
         <p style={styles.itemTitle}>{note.title}</p>
         <p>{getNoteDescription(note)}</p>

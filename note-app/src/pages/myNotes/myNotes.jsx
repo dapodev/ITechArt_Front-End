@@ -23,6 +23,7 @@ const MyNotes = ({ loggedInUser, signOut }) => {
         )
       : NOTES
   );
+  const [displayedNotes, setDisplayedNotes] = useState(noteList);
   const [activeNote, setActiveNote] = useState(null);
   const [isEditOn, setEditMode] = useState(false);
 
@@ -35,16 +36,34 @@ const MyNotes = ({ loggedInUser, signOut }) => {
     setLocalNoteList(noteList, loggedInUser);
   };
 
+  const resetActiveNote = () => setActiveNote(null);
+
+  useEffect(() => setDisplayedNotes(noteList), [noteList]);
+
+  useEffect(
+    () =>
+      displayedNotes.forEach((dispNote) =>
+        noteList.forEach((note) => {
+          if (dispNote.id === note.id) note = dispNote;
+        })
+      ),
+    [displayedNotes]
+  );
+
   const onCanceled = () => setEditMode(false);
 
   return (
     <PageLayout>
       <div style={styles.pageBody}>
         <div style={styles.sideNotePanel}>
-          <NotePanelMenu refreshNotes={setNoteList} />
+          <NotePanelMenu
+            refreshNotes={setNoteList}
+            displayNotes={setDisplayedNotes}
+            resetActiveNote={resetActiveNote}
+          />
           <NoteList
             style={styles.noteList}
-            notes={noteList}
+            notes={displayedNotes}
             onSelect={onSelectNote}
             activeNote={activeNote}
           />
