@@ -13,6 +13,7 @@ const PageLayout = ({ children }) => {
   };
 
   return (
+    // move log out button here
     <div style={styles.wrapper}>
       <div>
         <NavPanel isOpened={isMenuShown} setIsOpened={setMenuMode} />
