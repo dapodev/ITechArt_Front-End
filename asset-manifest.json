@@ -1,23 +1,26 @@
 {
   "files": {
-    "main.css": "/ITechArt_Front-End/static/css/main.8a1bf8fa.chunk.css",
-    "main.js": "/ITechArt_Front-End/static/js/main.9084a0cf.chunk.js",
-    "main.js.map": "/ITechArt_Front-End/static/js/main.9084a0cf.chunk.js.map",
-    "runtime-main.js": "/ITechArt_Front-End/static/js/runtime-main.c610abdb.js",
-    "runtime-main.js.map": "/ITechArt_Front-End/static/js/runtime-main.c610abdb.js.map",
-    "static/js/2.25742706.chunk.js": "/ITechArt_Front-End/static/js/2.25742706.chunk.js",
-    "static/js/2.25742706.chunk.js.map": "/ITechArt_Front-End/static/js/2.25742706.chunk.js.map",
-    "static/js/3.b2dd296a.chunk.js": "/ITechArt_Front-End/static/js/3.b2dd296a.chunk.js",
-    "static/js/3.b2dd296a.chunk.js.map": "/ITechArt_Front-End/static/js/3.b2dd296a.chunk.js.map",
+    "main.css": "/ITechArt_Front-End/static/css/main.9e8fde0b.chunk.css",
+    "main.js": "/ITechArt_Front-End/static/js/main.41f926d4.chunk.js",
+    "main.js.map": "/ITechArt_Front-End/static/js/main.41f926d4.chunk.js.map",
+    "runtime-main.js": "/ITechArt_Front-End/static/js/runtime-main.f2ccc797.js",
+    "runtime-main.js.map": "/ITechArt_Front-End/static/js/runtime-main.f2ccc797.js.map",
+    "static/css/2.ab75b8d7.chunk.css": "/ITechArt_Front-End/static/css/2.ab75b8d7.chunk.css",
+    "static/js/2.5aac5963.chunk.js": "/ITechArt_Front-End/static/js/2.5aac5963.chunk.js",
+    "static/js/2.5aac5963.chunk.js.map": "/ITechArt_Front-End/static/js/2.5aac5963.chunk.js.map",
+    "static/js/3.1b519d4e.chunk.js": "/ITechArt_Front-End/static/js/3.1b519d4e.chunk.js",
+    "static/js/3.1b519d4e.chunk.js.map": "/ITechArt_Front-End/static/js/3.1b519d4e.chunk.js.map",
     "index.html": "/ITechArt_Front-End/index.html",
-    "static/css/main.8a1bf8fa.chunk.css.map": "/ITechArt_Front-End/static/css/main.8a1bf8fa.chunk.css.map",
-    "static/js/2.25742706.chunk.js.LICENSE.txt": "/ITechArt_Front-End/static/js/2.25742706.chunk.js.LICENSE.txt",
+    "static/css/2.ab75b8d7.chunk.css.map": "/ITechArt_Front-End/static/css/2.ab75b8d7.chunk.css.map",
+    "static/css/main.9e8fde0b.chunk.css.map": "/ITechArt_Front-End/static/css/main.9e8fde0b.chunk.css.map",
+    "static/js/2.5aac5963.chunk.js.LICENSE.txt": "/ITechArt_Front-End/static/js/2.5aac5963.chunk.js.LICENSE.txt",
     "static/media/not-found.3fe9c240.png": "/ITechArt_Front-End/static/media/not-found.3fe9c240.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.c610abdb.js",
-    "static/js/2.25742706.chunk.js",
-    "static/css/main.8a1bf8fa.chunk.css",
-    "static/js/main.9084a0cf.chunk.js"
+    "static/js/runtime-main.f2ccc797.js",
+    "static/css/2.ab75b8d7.chunk.css",
+    "static/js/2.5aac5963.chunk.js",
+    "static/css/main.9e8fde0b.chunk.css",
+    "static/js/main.41f926d4.chunk.js"
   ]
 }
