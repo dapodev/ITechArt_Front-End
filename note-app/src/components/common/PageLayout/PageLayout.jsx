@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
+import { ExitToApp } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
+import { connect } from 'react-redux';
 
 import NavPanel from '../../NavPanel/NavPanel';
 import { styles } from './styles';
+import { mapStatetoProps } from './../../../utils/maps/mapStateToProps';
+import { mapDispatchToProps } from './../../../utils/maps/mapDispatchToProps';
 
-const PageLayout = ({ children }) => {
+const PageLayout = ({ children, loggedInUser, signOut }) => {
   const [isMenuShown, setMenuMode] = useState(false);
 
   const onMenuClick = () => {
@@ -13,13 +17,23 @@ const PageLayout = ({ children }) => {
   };
 
   return (
-    // move log out button here
     <div style={styles.wrapper}>
-      <div>
+      <div style={styles.topMenu}>
         <NavPanel isOpened={isMenuShown} setIsOpened={setMenuMode} />
         <Button style={styles.menuButton} onClick={onMenuClick}>
           <MenuIcon style={styles.menuIcon} />
         </Button>
+        {loggedInUser ? (
+          <Button
+            onClick={() => {
+              signOut();
+            }}
+            style={styles.logOutButton}
+            title="Log out"
+          >
+            <ExitToApp style={styles.logOutIcon} />
+          </Button>
+        ) : null}
       </div>
       <div style={styles.pageContent} onClick={() => setMenuMode(false)}>
         {children}
@@ -28,4 +42,4 @@ const PageLayout = ({ children }) => {
   );
 };
 
-export default PageLayout;
+export default connect(mapStatetoProps, mapDispatchToProps)(PageLayout);

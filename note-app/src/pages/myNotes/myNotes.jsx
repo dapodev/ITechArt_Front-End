@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '@material-ui/core';
-import { ExitToApp } from '@material-ui/icons';
 import { connect } from 'react-redux';
 
 import NoteList from '../../components/NoteList/NoteList';
@@ -15,7 +13,7 @@ import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
 import { mapDispatchToProps } from '../../utils/maps/mapDispatchToProps';
 import { setLocalNoteList } from '../../utils/localStorage';
 
-const MyNotes = ({ loggedInUser, signOut }) => {
+const MyNotes = ({ loggedInUser }) => {
   const [noteList, setNoteList] = useState(
     localStorage.getItem(`${loggedInUser.email}_${STORAGE_NOTES_CELL}`)
       ? JSON.parse(
@@ -67,15 +65,6 @@ const MyNotes = ({ loggedInUser, signOut }) => {
             onSelect={onSelectNote}
             activeNote={activeNote}
           />
-          <Button
-            onClick={() => {
-              signOut();
-            }}
-            style={styles.logOutButton}
-            title="Log out"
-          >
-            <ExitToApp style={styles.logOutIcon} />
-          </Button>
         </div>
         <div style={styles.sideInfoDisplay}>
           <DisplayedNote
