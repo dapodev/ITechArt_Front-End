@@ -39,17 +39,16 @@ const MyNotes = ({ loggedInUser }) => {
   useEffect(() => {
     setDisplayedNotes(noteList);
     setLocalNoteList(noteList, loggedInUser);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [noteList]);
 
   useEffect(
-    () => {
+    () =>
       displayedNotes.forEach((dispNote) =>
         noteList.forEach((note) => {
           if (dispNote.id === note.id) note = dispNote;
         })
-      );
-      console.log('displayed notes use effect worked');
-    },
+      ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [displayedNotes]
   );
@@ -68,12 +67,10 @@ const MyNotes = ({ loggedInUser }) => {
           <NoteList
             style={styles.noteList}
             notes={displayedNotes}
+            baseNotes={noteList}
             onSelect={onSelectNote}
             activeNote={activeNote}
-            onChangedOrder={(notes) => {
-              setNoteList(notes);
-              console.log(noteList);
-            }}
+            onChangedOrder={(notes) => setNoteList(notes)}
           />
         </div>
         <div style={styles.sideInfoDisplay}>
@@ -104,7 +101,6 @@ const MyNotes = ({ loggedInUser }) => {
 
 MyNotes.propTypes = {
   loggedInUser: PropTypes.object.isRequired,
-  signOut: PropTypes.func.isRequired,
 };
 
 export default connect(mapStatetoProps, mapDispatchToProps)(MyNotes);

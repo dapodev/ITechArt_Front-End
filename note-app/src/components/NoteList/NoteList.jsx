@@ -2,51 +2,99 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from 'react-loader-spinner';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, resetServerContext } from 'react-beautiful-dnd';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 import NoteItem from './NoteItem/NoteItem';
 import { styles } from './styles';
 import './index.css';
 
-const NoteList = ({ style, notes, onSelect, activeNote, onChangedOrder }) => {
+const NoteList = ({
+  style,
+  notes,
+  baseNotes,
+  onSelect,
+  activeNote,
+  onChangedOrder,
+}) => {
   const [loadedNotes, setLoadedNotes] = useState([]);
   const [hasMore, setHasMore] = useState(notes.length ? true : false);
   const [page, setPage] = useState(1);
 
   const PAGE_SIZE = 4;
+  const SERVER_RESPONSE_TIME_EMULATION = 200;
 
-  // maybe should think about another algorithm
   useEffect(() => {
+    if (page === 1) {
+      setTimeout(() => {
+        loadNotes(page);
+        console.log('notes loaded');
+        if (notes.length > page * PAGE_SIZE) {
+          setHasMore(true);
+        }
+      }, SERVER_RESPONSE_TIME_EMULATION);
+    } else {
+      setPage(1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [notes]);
+
+  useEffect(() => {
+    console.log('page initial');
     if (!hasMore) {
       setHasMore(page * PAGE_SIZE < notes.length);
-      setLoadedNotes([]);
     }
 
     setTimeout(() => {
-      setLoadedNotes(notes.slice(0, PAGE_SIZE * page));
-      if (page * PAGE_SIZE >= notes.length) setHasMore(false);
-    }, 500);
+      loadNotes(page);
+      if (page * PAGE_SIZE >= notes.length) {
+        setHasMore(false);
+      }
+    }, SERVER_RESPONSE_TIME_EMULATION);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, notes]);
+  }, [page]);
 
-  const handleLoadMore = () => {
-    setPage(page + 1);
+  const loadNotes = (page) => setLoadedNotes(notes.slice(0, PAGE_SIZE * page));
+
+  const handleLoadMore = () => setPage(page + 1);
+
+  const swapNotes = (src, dst) => {
+    const realSrc = getIndex(baseNotes, loadedNotes[src].id);
+    const realDst = getIndex(baseNotes, loadedNotes[dst].id);
+    const result = Array.from(baseNotes);
+
+    console.log(src, dst);
+    console.log(realSrc, realDst);
+
+    const [extracted] = result.splice(realSrc, 1);
+    result.splice(realDst, 0, extracted);
+
+    return result;
   };
 
   const changeNotesOrder = (result) => {
-    const sourceIndex = result.source.index;
-    const destinIndex = result.destination?.index || sourceIndex;
+    if (result.destination) {
+      const sourceIndex = result.source.index;
+      const destinIndex = result.destination.index;
 
-    //swap
-    const temp = notes[sourceIndex];
-    notes[sourceIndex] = notes[destinIndex];
-    notes[destinIndex] = temp;
+      //swap
+      const newOrderNotes = swapNotes(sourceIndex, destinIndex);
 
-    console.log(sourceIndex, ' -> ', destinIndex);
-
-    onChangedOrder(notes);
+      onChangedOrder(newOrderNotes);
+    }
   };
+
+  const getIndex = (notes, id) => {
+    let res = -1;
+
+    notes.forEach((note, index) => {
+      if (note.id === id) {
+        res = index;
+      }
+    });
+
+    return res;
+  }; // move it to utils?
 
   return (
     <div style={style} className="noteList" id="scrollParent">
@@ -89,6 +137,7 @@ NoteList.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSelect: PropTypes.func.isRequired,
   activeNote: PropTypes.object,
+  baseNotes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default NoteList;
