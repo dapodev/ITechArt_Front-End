@@ -36,15 +36,21 @@ const MyNotes = ({ loggedInUser }) => {
 
   const resetActiveNote = () => setActiveNote(null);
 
-  useEffect(() => setDisplayedNotes(noteList), [noteList]);
+  useEffect(() => {
+    setDisplayedNotes(noteList);
+    setLocalNoteList(noteList, loggedInUser);
+  }, [noteList]);
 
   useEffect(
-    () =>
+    () => {
       displayedNotes.forEach((dispNote) =>
         noteList.forEach((note) => {
           if (dispNote.id === note.id) note = dispNote;
         })
-      ),
+      );
+      console.log('displayed notes use effect worked');
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [displayedNotes]
   );
 
@@ -64,6 +70,10 @@ const MyNotes = ({ loggedInUser }) => {
             notes={displayedNotes}
             onSelect={onSelectNote}
             activeNote={activeNote}
+            onChangedOrder={(notes) => {
+              setNoteList(notes);
+              console.log(noteList);
+            }}
           />
         </div>
         <div style={styles.sideInfoDisplay}>

@@ -2,19 +2,20 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from 'react-loader-spinner';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 import NoteItem from './NoteItem/NoteItem';
 import { styles } from './styles';
 import './index.css';
 
-const NoteList = ({ style, notes, onSelect, activeNote }) => {
+const NoteList = ({ style, notes, onSelect, activeNote, onChangedOrder }) => {
   const [loadedNotes, setLoadedNotes] = useState([]);
   const [hasMore, setHasMore] = useState(notes.length ? true : false);
   const [page, setPage] = useState(1);
 
   const PAGE_SIZE = 4;
- 
+
   // maybe should think about another algorithm
   useEffect(() => {
     if (!hasMore) {
@@ -33,6 +34,20 @@ const NoteList = ({ style, notes, onSelect, activeNote }) => {
     setPage(page + 1);
   };
 
+  const changeNotesOrder = (result) => {
+    const sourceIndex = result.source.index;
+    const destinIndex = result.destination?.index || sourceIndex;
+
+    //swap
+    const temp = notes[sourceIndex];
+    notes[sourceIndex] = notes[destinIndex];
+    notes[destinIndex] = temp;
+
+    console.log(sourceIndex, ' -> ', destinIndex);
+
+    onChangedOrder(notes);
+  };
+
   return (
     <div style={style} className="noteList" id="scrollParent">
       <InfiniteScroll
@@ -46,14 +61,24 @@ const NoteList = ({ style, notes, onSelect, activeNote }) => {
         }
         scrollableTarget="scrollParent"
       >
-        {loadedNotes.map((note, index) => (
-          <NoteItem
-            note={note}
-            key={index}
-            onSelect={onSelect}
-            isActive={activeNote?.id === note.id}
-          />
-        ))}
+        <DragDropContext onDragEnd={changeNotesOrder}>
+          <Droppable droppableId="droppable">
+            {(provided, snapshot) => (
+              <div {...provided.droppableProps} ref={provided.innerRef}>
+                {loadedNotes.map((note, index) => (
+                  <NoteItem
+                    note={note}
+                    key={index}
+                    onSelect={onSelect}
+                    isActive={activeNote?.id === note.id}
+                    index={index}
+                  />
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
       </InfiniteScroll>
     </div>
   );
