@@ -34,7 +34,7 @@ const MyNotes = ({ loggedInUser }) => {
     setLocalNoteList(noteList, loggedInUser);
   };
 
-  const resetActiveNote = () => setActiveNote(null);
+  // const resetActiveNote = () => setActiveNote(null);
 
   useEffect(() => {
     setDisplayedNotes(noteList);
@@ -64,7 +64,7 @@ const MyNotes = ({ loggedInUser }) => {
           <NotePanelMenu
             refreshNotes={setNoteList}
             displayNotes={setDisplayedNotes}
-            resetActiveNote={resetActiveNote}
+            notes={noteList}
           />
           <NoteList
             style={styles.noteList}

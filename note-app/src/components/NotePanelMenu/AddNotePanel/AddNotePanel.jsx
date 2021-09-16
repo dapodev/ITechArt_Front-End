@@ -8,21 +8,15 @@ import { Input } from 'antd';
 
 import { styles } from './styles';
 import {
-  getLocalCurrentUser,
-  getLocalNoteList,
-  setLocalNoteList,
-} from '../../../utils/localStorage';
-import {
   DEFAULT_NOTE_DESCRIPTION,
   DEFAULT_NOTE_TITLE,
 } from '../../../config/constants';
 
-const AddNotePanel = ({ shown, style, handleClose, onAdded }) => {
+const AddNotePanel = ({ shown, style, handleClose, onAdded, notes }) => {
   const wrapperStyle = { ...styles.panelWrapper, ...(style || null) };
 
   const onAddNote = (data) => {
-    const currentUser = getLocalCurrentUser();
-    const notes = getLocalNoteList(currentUser);
+    const newNoteList = Array.from(notes);
 
     const newNote = {
       id: getFreeNoteId(notes),
@@ -31,9 +25,8 @@ const AddNotePanel = ({ shown, style, handleClose, onAdded }) => {
       creation: new Date().toDateString(),
     };
 
-    notes.push(newNote);
-    setLocalNoteList(notes, currentUser);
-    onAdded(notes);
+    newNoteList.push(newNote);
+    onAdded(newNoteList);
     handleClose();
   };
 
@@ -105,6 +98,7 @@ AddNotePanel.propTypes = {
   style: PropTypes.object,
   handleClose: PropTypes.func.isRequired,
   onAdded: PropTypes.func.isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default AddNotePanel;

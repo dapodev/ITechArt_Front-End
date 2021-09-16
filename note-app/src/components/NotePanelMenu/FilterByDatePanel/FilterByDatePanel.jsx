@@ -7,18 +7,17 @@ import { Button } from '@material-ui/core';
 import { Input } from 'antd';
 
 import { styles } from './styles';
-import {
-  getLocalNoteList,
-  getLocalCurrentUser,
-} from '../../../utils/localStorage';
 
-const FilterByDatePanel = ({ shown, style, handleClose, onFiltered }) => {
+const FilterByDatePanel = ({
+  shown,
+  style,
+  handleClose,
+  onFiltered,
+  notes,
+}) => {
   const wrapperStyle = { ...styles.panelWrapper, ...(style || null) };
 
   const handleFilter = (data) => {
-    const user = getLocalCurrentUser();
-    const notes = getLocalNoteList(user);
-
     const filteredNotes = notes.filter(
       (note) =>
         new Date(note.creation) >=
@@ -32,11 +31,7 @@ const FilterByDatePanel = ({ shown, style, handleClose, onFiltered }) => {
   };
 
   const handleReset = () => {
-    const user = getLocalCurrentUser();
-    const notes = getLocalNoteList(user);
-
     onFiltered(notes);
-
     handleClose();
   };
 
@@ -97,6 +92,7 @@ FilterByDatePanel.propTypes = {
   style: PropTypes.object,
   handleClose: PropTypes.func.isRequired,
   onFiltered: PropTypes.func.isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default FilterByDatePanel;

@@ -10,7 +10,7 @@ import FilterByDatePanel from './FilterByDatePanel/FilterByDatePanel';
 import FilterByNamePanel from './FilterByNamePanel/FilterByNamePanel';
 import { styles } from './styles';
 
-const NotePanelMenu = ({ refreshNotes, displayNotes }) => {
+const NotePanelMenu = ({ refreshNotes, displayNotes, notes }) => {
   const [isAddNoteShown, setAddNoteShown] = useState(false);
   const closeAddNotePanel = () => setAddNoteShown(false);
   const onAddedNote = (notes) => refreshNotes(notes);
@@ -51,18 +51,21 @@ const NotePanelMenu = ({ refreshNotes, displayNotes }) => {
         style={styles.popUpPanel}
         handleClose={closeAddNotePanel}
         onAdded={onAddedNote}
+        notes={notes}
       />
       <FilterByDatePanel
         shown={isFilterByDateShown}
         handleClose={closeFilterByDatePanel}
         style={styles.popUpPanel}
         onFiltered={onFiltered}
+        notes={notes}
       />
       <FilterByNamePanel
         shown={isFilterByNameShown}
         handleClose={closeFilterByNamePanel}
         style={styles.popUpPanel}
         onFiltered={onFiltered}
+        notes={notes}
       />
     </div>
   );
@@ -71,6 +74,7 @@ const NotePanelMenu = ({ refreshNotes, displayNotes }) => {
 NotePanelMenu.propTypes = {
   refreshNotes: PropTypes.func.isRequired,
   displayNotes: PropTypes.func.isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default NotePanelMenu;

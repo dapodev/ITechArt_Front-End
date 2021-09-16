@@ -7,17 +7,16 @@ import { Formik } from 'formik';
 import { Input } from 'antd';
 
 import { styles } from './styles';
-import {
-  getLocalCurrentUser,
-  getLocalNoteList,
-} from '../../../utils/localStorage';
 
-const FilterByNamePanel = ({ shown, style, handleClose, onFiltered }) => {
+const FilterByNamePanel = ({
+  shown,
+  style,
+  handleClose,
+  onFiltered,
+  notes,
+}) => {
   const wrapperStyle = { ...styles.panelWrapper, ...(style || null) };
   const handleFilter = (data) => {
-    const user = getLocalCurrentUser();
-    const notes = getLocalNoteList(user);
-
     const filteredList = notes.filter((note) =>
       note.title.toUpperCase().includes(data.title.toUpperCase())
     );
@@ -27,9 +26,6 @@ const FilterByNamePanel = ({ shown, style, handleClose, onFiltered }) => {
   };
 
   const handleReset = () => {
-    const user = getLocalCurrentUser();
-    const notes = getLocalNoteList(user);
-
     onFiltered(notes);
     handleClose();
   };
@@ -81,6 +77,7 @@ FilterByNamePanel.propTypes = {
   style: PropTypes.object,
   handleClose: PropTypes.func.isRequired,
   onFiltered: PropTypes.func.isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default FilterByNamePanel;
