@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from 'react-loader-spinner';
-import { DragDropContext, Droppable, resetServerContext } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable} from 'react-beautiful-dnd';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 import NoteItem from './NoteItem/NoteItem';
@@ -28,9 +28,10 @@ const NoteList = ({
     if (page === 1) {
       setTimeout(() => {
         loadNotes(page);
-        console.log('notes loaded');
         if (notes.length > page * PAGE_SIZE) {
           setHasMore(true);
+        } else {
+          setHasMore(false); // prev bug fixed
         }
       }, SERVER_RESPONSE_TIME_EMULATION);
     } else {
@@ -40,7 +41,6 @@ const NoteList = ({
   }, [notes]);
 
   useEffect(() => {
-    console.log('page initial');
     if (!hasMore) {
       setHasMore(page * PAGE_SIZE < notes.length);
     }

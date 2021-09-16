@@ -55,3 +55,6 @@ export const ACTION_TYPES = {
 };
 
 export const SNACKBAR_DURATION = 2000;
+
+export const DEFAULT_NOTE_TITLE = 'Default note title';
+export const DEFAULT_NOTE_DESCRIPTION = 'Default note description';

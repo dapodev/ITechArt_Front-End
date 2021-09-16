@@ -5,11 +5,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 
 import { styles } from './styles';
-import {
-  getLocalCurrentUser,
-  getLocalNoteList,
-  setLocalNoteList,
-} from '../../utils/localStorage';
 
 const DisplayedNote = ({
   activeNote,
@@ -17,17 +12,15 @@ const DisplayedNote = ({
   setEditing,
   refreshNotes,
   onDeleted,
+  notes,
 }) => {
-  const onEditClick = (event) => {
+  const onEditClick = () => {
     setEditing(true);
   };
 
   const deleteNote = () => {
-    const user = getLocalCurrentUser();
-    const notes = getLocalNoteList(user);
     const newNoteList = notes.filter((note) => note.id !== activeNote.id);
     refreshNotes(newNoteList);
-    setLocalNoteList(newNoteList, user);
     onDeleted();
   };
 
@@ -60,6 +53,7 @@ DisplayedNote.propTypes = {
   setEditing: PropTypes.func.isRequired,
   refreshNotes: PropTypes.func.isRequired,
   onDeleted: PropTypes.func.isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default DisplayedNote;

@@ -12,6 +12,10 @@ import {
   getLocalNoteList,
   setLocalNoteList,
 } from '../../../utils/localStorage';
+import {
+  DEFAULT_NOTE_DESCRIPTION,
+  DEFAULT_NOTE_TITLE,
+} from '../../../config/constants';
 
 const AddNotePanel = ({ shown, style, handleClose, onAdded }) => {
   const wrapperStyle = { ...styles.panelWrapper, ...(style || null) };
@@ -22,8 +26,8 @@ const AddNotePanel = ({ shown, style, handleClose, onAdded }) => {
 
     const newNote = {
       id: getFreeNoteId(notes),
-      title: data.title || 'Default title',
-      description: data.description || 'Default description',
+      title: data.title || DEFAULT_NOTE_TITLE,
+      description: data.description || DEFAULT_NOTE_DESCRIPTION,
       creation: new Date().toDateString(),
     };
 
@@ -35,9 +39,11 @@ const AddNotePanel = ({ shown, style, handleClose, onAdded }) => {
 
   const getFreeNoteId = (notes) => {
     let id = 0;
-    while (true) {
+    while (id <= notes.length) {
       // eslint-disable-next-line no-loop-func
-      if (!notes.filter((note) => note.id === id).length) break;
+      if (!notes.filter((note) => note.id === id).length) {
+        break;
+      }
       id++;
     }
 

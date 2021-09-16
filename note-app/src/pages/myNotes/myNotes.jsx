@@ -46,7 +46,9 @@ const MyNotes = ({ loggedInUser }) => {
     () =>
       displayedNotes.forEach((dispNote) =>
         noteList.forEach((note) => {
-          if (dispNote.id === note.id) note = dispNote;
+          if (dispNote.id === note.id) {
+            note = dispNote;
+          }
         })
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,6 +82,7 @@ const MyNotes = ({ loggedInUser }) => {
             setEditing={setEditMode}
             refreshNotes={setNoteList}
             onDeleted={() => setActiveNote(null)}
+            notes={noteList}
           />
           <div
             style={{
