@@ -25,6 +25,7 @@ export const NOTES = [
 export const STORAGE_NOTES_CELL = 'noteList';
 export const USER_LIST_CELL = 'userList';
 export const CURRENT_USER_CELL = 'currentUser';
+export const SHARED_NOTES_CELL = 'sharedNotes'
 
 export const NAVPANEL_WIDTH = '24.7vw';
 

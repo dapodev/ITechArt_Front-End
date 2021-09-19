@@ -1,5 +1,5 @@
 export const mapStatetoProps = (state, ownProps = {}) => {
-  const { isLoggedIn, loggedInUser } = state;
+  const { isLoggedIn, loggedInUser, sharedNotes, setSharedNotes } = state;
 
-  return { isLoggedIn, loggedInUser, ...ownProps };
+  return { isLoggedIn, loggedInUser, sharedNotes, setSharedNotes, ...ownProps };
 };

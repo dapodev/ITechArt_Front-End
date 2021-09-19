@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from 'react-loader-spinner';
-import { DragDropContext, Droppable} from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 import NoteItem from './NoteItem/NoteItem';
+import getIndexById from '../../utils/getIndexById';
 import { styles } from './styles';
 import './index.css';
 
@@ -31,7 +32,7 @@ const NoteList = ({
         if (notes.length > page * PAGE_SIZE) {
           setHasMore(true);
         } else {
-          setHasMore(false); // prev bug fixed
+          setHasMore(false);
         }
       }, SERVER_RESPONSE_TIME_EMULATION);
     } else {
@@ -59,12 +60,9 @@ const NoteList = ({
   const handleLoadMore = () => setPage(page + 1);
 
   const swapNotes = (src, dst) => {
-    const realSrc = getIndex(baseNotes, loadedNotes[src].id);
-    const realDst = getIndex(baseNotes, loadedNotes[dst].id);
+    const realSrc = getIndexById(baseNotes, loadedNotes[src].id);
+    const realDst = getIndexById(baseNotes, loadedNotes[dst].id);
     const result = Array.from(baseNotes);
-
-    console.log(src, dst);
-    console.log(realSrc, realDst);
 
     const [extracted] = result.splice(realSrc, 1);
     result.splice(realDst, 0, extracted);
@@ -77,24 +75,11 @@ const NoteList = ({
       const sourceIndex = result.source.index;
       const destinIndex = result.destination.index;
 
-      //swap
       const newOrderNotes = swapNotes(sourceIndex, destinIndex);
-
+      
       onChangedOrder(newOrderNotes);
     }
   };
-
-  const getIndex = (notes, id) => {
-    let res = -1;
-
-    notes.forEach((note, index) => {
-      if (note.id === id) {
-        res = index;
-      }
-    });
-
-    return res;
-  }; // move it to utils?
 
   return (
     <div style={style} className="noteList" id="scrollParent">
