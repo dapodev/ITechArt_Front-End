@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/ITechArt_Front-End/static/css/main.9e8fde0b.chunk.css",
-    "main.js": "/ITechArt_Front-End/static/js/main.e08fedf9.chunk.js",
-    "main.js.map": "/ITechArt_Front-End/static/js/main.e08fedf9.chunk.js.map",
-    "runtime-main.js": "/ITechArt_Front-End/static/js/runtime-main.c97641da.js",
-    "runtime-main.js.map": "/ITechArt_Front-End/static/js/runtime-main.c97641da.js.map",
+    "main.js": "/ITechArt_Front-End/static/js/main.260c97fe.chunk.js",
+    "main.js.map": "/ITechArt_Front-End/static/js/main.260c97fe.chunk.js.map",
+    "runtime-main.js": "/ITechArt_Front-End/static/js/runtime-main.5be318b1.js",
+    "runtime-main.js.map": "/ITechArt_Front-End/static/js/runtime-main.5be318b1.js.map",
     "static/css/2.ab75b8d7.chunk.css": "/ITechArt_Front-End/static/css/2.ab75b8d7.chunk.css",
-    "static/js/2.b324e736.chunk.js": "/ITechArt_Front-End/static/js/2.b324e736.chunk.js",
-    "static/js/2.b324e736.chunk.js.map": "/ITechArt_Front-End/static/js/2.b324e736.chunk.js.map",
-    "static/js/3.e25d0427.chunk.js": "/ITechArt_Front-End/static/js/3.e25d0427.chunk.js",
-    "static/js/3.e25d0427.chunk.js.map": "/ITechArt_Front-End/static/js/3.e25d0427.chunk.js.map",
+    "static/js/2.757a3903.chunk.js": "/ITechArt_Front-End/static/js/2.757a3903.chunk.js",
+    "static/js/2.757a3903.chunk.js.map": "/ITechArt_Front-End/static/js/2.757a3903.chunk.js.map",
+    "static/js/3.63a3408a.chunk.js": "/ITechArt_Front-End/static/js/3.63a3408a.chunk.js",
+    "static/js/3.63a3408a.chunk.js.map": "/ITechArt_Front-End/static/js/3.63a3408a.chunk.js.map",
     "index.html": "/ITechArt_Front-End/index.html",
     "static/css/2.ab75b8d7.chunk.css.map": "/ITechArt_Front-End/static/css/2.ab75b8d7.chunk.css.map",
     "static/css/main.9e8fde0b.chunk.css.map": "/ITechArt_Front-End/static/css/main.9e8fde0b.chunk.css.map",
-    "static/js/2.b324e736.chunk.js.LICENSE.txt": "/ITechArt_Front-End/static/js/2.b324e736.chunk.js.LICENSE.txt",
+    "static/js/2.757a3903.chunk.js.LICENSE.txt": "/ITechArt_Front-End/static/js/2.757a3903.chunk.js.LICENSE.txt",
     "static/media/not-found.3fe9c240.png": "/ITechArt_Front-End/static/media/not-found.3fe9c240.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.c97641da.js",
+    "static/js/runtime-main.5be318b1.js",
     "static/css/2.ab75b8d7.chunk.css",
-    "static/js/2.b324e736.chunk.js",
+    "static/js/2.757a3903.chunk.js",
     "static/css/main.9e8fde0b.chunk.css",
-    "static/js/main.e08fedf9.chunk.js"
+    "static/js/main.260c97fe.chunk.js"
   ]
 }
