@@ -4,7 +4,7 @@ import NoteList from '../../components/NoteList/NoteList';
 import { styles } from './styles';
 import PageLayout from '../../components/common/PageLayout/PageLayout';
 import { connect } from 'react-redux';
-import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
+import { mapStateToProps } from '../../utils/maps/mapStateToProps';
 
 const SharedNotes = ({ sharedNotes, setSharedNotes }) => {
   return (
@@ -23,4 +23,4 @@ const SharedNotes = ({ sharedNotes, setSharedNotes }) => {
   );
 };
 
-export default connect(mapStatetoProps)(SharedNotes);
+export default connect(mapStateToProps)(SharedNotes);

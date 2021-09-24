@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import NavPanel from '../../NavPanel/NavPanel';
 import { styles } from './styles';
-import { mapStatetoProps } from './../../../utils/maps/mapStateToProps';
+import { mapStateToProps } from './../../../utils/maps/mapStateToProps';
 import { mapDispatchToProps } from './../../../utils/maps/mapDispatchToProps';
 
 const PageLayout = ({ children, loggedInUser, signOut }) => {
@@ -42,4 +42,4 @@ const PageLayout = ({ children, loggedInUser, signOut }) => {
   );
 };
 
-export default connect(mapStatetoProps, mapDispatchToProps)(PageLayout);
+export default connect(mapStateToProps, mapDispatchToProps)(PageLayout);

@@ -13,7 +13,7 @@ import {
   SNACKBAR_DURATION,
 } from '../../config/constants';
 import { SignUpValidations } from '../../utils/validations/SignUpValidations';
-import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
+import { mapStateToProps } from '../../utils/maps/mapStateToProps';
 import { mapDispatchToProps } from '../../utils/maps/mapDispatchToProps';
 import Snackbar from '../../components/Snackbar/Snackbar';
 
@@ -154,4 +154,4 @@ SignUp.propTypes = {
   signUpRequest: PropTypes.func.isRequired,
 }
 
-export default connect(mapStatetoProps, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

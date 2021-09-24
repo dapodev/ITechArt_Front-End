@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
 import { ROUTES } from '../../../config/constants';
-import { mapStatetoProps } from '../../../utils/maps/mapStateToProps';
+import { mapStateToProps } from '../../../utils/maps/mapStateToProps';
 
 const PrivateRoute = ({ children, isLoggedIn }) => (
   <div>
@@ -15,4 +15,4 @@ const PrivateRoute = ({ children, isLoggedIn }) => (
   </div>
 );
 
-export default connect(mapStatetoProps)(PrivateRoute);
+export default connect(mapStateToProps)(PrivateRoute);

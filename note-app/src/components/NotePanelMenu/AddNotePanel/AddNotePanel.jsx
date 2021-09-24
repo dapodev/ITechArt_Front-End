@@ -43,54 +43,56 @@ const AddNotePanel = ({ shown, style, handleClose, onAdded, notes }) => {
     return id;
   };
 
-  return shown ? (
-    <div style={wrapperStyle}>
-      <p style={styles.title}>Add note</p>
-      <Formik
-        initialValues={{
-          title: '',
-          description: '',
-        }}
-        onSubmit={onAddNote}
-      >
-        {({ values, handleChange, handleSubmit }) => (
-          <form style={styles.loginForm}>
-            <Input
-              style={styles.input}
-              placeholder="Note title"
-              name="title"
-              value={values.title}
-              onChange={handleChange}
-            />
-            <Input
-              style={styles.input}
-              placeholder="Note description"
-              name="description"
-              value={values.description}
-              onChange={handleChange}
-            />
-            <div style={styles.buttonsContainer}>
-              <Button
-                style={styles.commonButton}
-                type="submit"
-                onClick={handleSubmit}
-                title="Add note"
-              >
-                <CheckIcon style={styles.commonIcon} />
-              </Button>
-              <Button
-                style={styles.commonButton}
-                onClick={handleClose}
-                title="Cancel"
-              >
-                <ClearIcon style={styles.commonIcon} />
-              </Button>
-            </div>
-          </form>
-        )}
-      </Formik>
-    </div>
-  ) : null;
+  return (
+    shown && (
+      <div style={wrapperStyle}>
+        <p style={styles.title}>Add note</p>
+        <Formik
+          initialValues={{
+            title: '',
+            description: '',
+          }}
+          onSubmit={onAddNote}
+        >
+          {({ values, handleChange, handleSubmit }) => (
+            <form style={styles.loginForm}>
+              <Input
+                style={styles.input}
+                placeholder="Note title"
+                name="title"
+                value={values.title}
+                onChange={handleChange}
+              />
+              <Input
+                style={styles.input}
+                placeholder="Note description"
+                name="description"
+                value={values.description}
+                onChange={handleChange}
+              />
+              <div style={styles.buttonsContainer}>
+                <Button
+                  style={styles.commonButton}
+                  type="submit"
+                  onClick={handleSubmit}
+                  title="Add note"
+                >
+                  <CheckIcon style={styles.commonIcon} />
+                </Button>
+                <Button
+                  style={styles.commonButton}
+                  onClick={handleClose}
+                  title="Cancel"
+                >
+                  <ClearIcon style={styles.commonIcon} />
+                </Button>
+              </div>
+            </form>
+          )}
+        </Formik>
+      </div>
+    )
+  );
 };
 
 AddNotePanel.propTypes = {

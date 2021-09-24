@@ -10,7 +10,7 @@ import NotePanelMenu from '../../components/NotePanelMenu/NotePanelMenu';
 import getFreeId from '../../utils/getFreeId';
 import { styles } from './styles';
 import { NOTES, STORAGE_NOTES_CELL } from '../../config/constants';
-import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
+import { mapStateToProps } from '../../utils/maps/mapStateToProps';
 import { mapDispatchToProps } from '../../utils/maps/mapDispatchToProps';
 import { setLocalNoteList } from '../../utils/localStorage';
 import getIndexById from '../../utils/getIndexById';
@@ -151,4 +151,4 @@ MyNotes.propTypes = {
   loggedInUser: PropTypes.object.isRequired,
 };
 
-export default connect(mapStatetoProps, mapDispatchToProps)(MyNotes);
+export default connect(mapStateToProps, mapDispatchToProps)(MyNotes);
