@@ -43,7 +43,7 @@ const EditNotePanel = ({ onEdited, activeNote, onCanceled }) => {
       <Button type="submit" style={styles.applyButton}>
         Apply
       </Button>
-      <Button style={styles.applyButton} onClick={onCancelClick}>
+      <Button test-data="cancelButton" style={styles.applyButton} onClick={onCancelClick}>
         Cancel
       </Button>
     </form>

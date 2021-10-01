@@ -1,3 +1,4 @@
+import React from 'react';
 import { Snackbar as SB } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import PropTypes from 'prop-types';

@@ -76,6 +76,7 @@ const AddNotePanel = ({ shown, style, handleClose, onAdded, notes }) => {
                   type="submit"
                   onClick={handleSubmit}
                   title="Add note"
+                  test-data="applyButton"
                 >
                   <CheckIcon style={styles.commonIcon} />
                 </Button>
@@ -83,6 +84,7 @@ const AddNotePanel = ({ shown, style, handleClose, onAdded, notes }) => {
                   style={styles.commonButton}
                   onClick={handleClose}
                   title="Cancel"
+                  test-data="cancelButton"
                 >
                   <ClearIcon style={styles.commonIcon} />
                 </Button>

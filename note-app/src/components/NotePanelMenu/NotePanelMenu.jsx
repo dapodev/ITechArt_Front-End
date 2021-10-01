@@ -28,6 +28,7 @@ const NotePanelMenu = ({ refreshNotes, displayNotes, notes }) => {
       <Button
         style={styles.commonButton}
         title="Add note"
+        test-data="addNoteButton"
         onClick={() => setAddNoteShown(true)}
       >
         <AddIcon style={styles.commonIcon} />
@@ -36,6 +37,7 @@ const NotePanelMenu = ({ refreshNotes, displayNotes, notes }) => {
         style={styles.commonButton}
         title="Filter by date"
         onClick={() => setFilterByDateShown(true)}
+        test-data="dateFilterButton"
       >
         <CalendarTodayIcon style={styles.commonIcon} />
       </Button>
@@ -43,7 +45,8 @@ const NotePanelMenu = ({ refreshNotes, displayNotes, notes }) => {
         style={styles.commonButton}
         title="Filter by name"
         onClick={() => setFilterByNameShown(true)}
-      >
+        test-data="nameFilterButton"
+        >
         <SearchIcon style={styles.commonIcon} />
       </Button>
       <AddNotePanel
@@ -52,6 +55,7 @@ const NotePanelMenu = ({ refreshNotes, displayNotes, notes }) => {
         handleClose={closeAddNotePanel}
         onAdded={onAddedNote}
         notes={notes}
+        test-data="addNotePanel"
       />
       <FilterByDatePanel
         shown={isFilterByDateShown}
@@ -59,6 +63,7 @@ const NotePanelMenu = ({ refreshNotes, displayNotes, notes }) => {
         style={styles.popUpPanel}
         onFiltered={onFiltered}
         notes={notes}
+        test-data="filterByDatePanel"
       />
       <FilterByNamePanel
         shown={isFilterByNameShown}
@@ -66,6 +71,7 @@ const NotePanelMenu = ({ refreshNotes, displayNotes, notes }) => {
         style={styles.popUpPanel}
         onFiltered={onFiltered}
         notes={notes}
+        test-data="filterByNamePanel"
       />
     </div>
   );

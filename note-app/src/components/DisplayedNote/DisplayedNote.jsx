@@ -42,10 +42,10 @@ const DisplayedNote = ({
       {activeNote ? (
         <div>
           <div style={styles.noteMenu}>
-            <Button style={styles.menuButton} onClick={deleteNote}>
+            <Button test-data='deleteButton' style={styles.menuButton} onClick={deleteNote}>
               <DeleteIcon />
             </Button>
-            <Button style={styles.menuButton} onClick={onEditClick}>
+            <Button test-data='editButton' style={styles.menuButton} onClick={onEditClick}>
               <EditIcon />
             </Button>
             {activeNote.isShared ? (
