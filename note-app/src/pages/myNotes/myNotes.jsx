@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '@material-ui/core';
-import { ExitToApp } from '@material-ui/icons';
 import { connect } from 'react-redux';
 
 import NoteList from '../../components/NoteList/NoteList';
 import DisplayedNote from '../../components/DisplayedNote/DisplayedNote';
-import { styles } from './styles';
-import { NOTES, STORAGE_NOTES_CELL } from '../../config/constants';
 import EditNotePanel from '../../components/EditNotePanel/EditNotePanel';
 import PageLayout from '../../components/common/PageLayout/PageLayout';
-import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
+import NotePanelMenu from '../../components/NotePanelMenu/NotePanelMenu';
+import getFreeId from '../../utils/getFreeId';
+import { styles } from './styles';
+import { NOTES, STORAGE_NOTES_CELL } from '../../config/constants';
+import { mapStateToProps } from '../../utils/maps/mapStateToProps';
 import { mapDispatchToProps } from '../../utils/maps/mapDispatchToProps';
+import { setLocalNoteList } from '../../utils/localStorage';
+import getIndexById from '../../utils/getIndexById';
 
-const MyNotes = ({ loggedInUser, signOut }) => {
+const MyNotes = ({ loggedInUser, sharedNotes, setSharedNotes }) => {
   const [noteList, setNoteList] = useState(
     localStorage.getItem(`${loggedInUser.email}_${STORAGE_NOTES_CELL}`)
       ? JSON.parse(
@@ -21,53 +23,111 @@ const MyNotes = ({ loggedInUser, signOut }) => {
         )
       : NOTES
   );
+  const [displayedNotes, setDisplayedNotes] = useState(noteList);
   const [activeNote, setActiveNote] = useState(null);
   const [isEditOn, setEditMode] = useState(false);
 
   const onSelectNote = (selectedNote) =>
     isEditOn ? null : setActiveNote(selectedNote);
 
-  const saveNotesLocal = (notes) =>
-    localStorage.setItem(
-      `${loggedInUser.email}_${STORAGE_NOTES_CELL}`,
-      JSON.stringify(notes)
-    );
-
   const onEdited = () => {
     setEditMode(false);
     setNoteList(noteList);
-    saveNotesLocal(noteList);
+    setLocalNoteList(noteList, loggedInUser);
   };
 
-  const onCanceled = () => {
-    setEditMode(false);
+  // const resetActiveNote = () => setActiveNote(null);
+
+  useEffect(() => {
+    setDisplayedNotes(noteList);
+    setLocalNoteList(noteList, loggedInUser);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [noteList]);
+
+  useEffect(
+    () =>
+      displayedNotes.forEach((dispNote) =>
+        noteList.forEach((note) => {
+          if (dispNote.id === note.id) {
+            note = dispNote;
+          }
+        })
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [displayedNotes]
+  );
+
+  const onCanceled = () => setEditMode(false);
+
+  const onSharedChanged = (noteState) => {
+    const newNoteList = Array.from(noteList);
+
+    const changedNote = newNoteList.filter(
+      (note) => note.id === noteState.id
+    )[0];
+
+    changedNote.isShared = noteState.isShared;
+    const prevId = changedNote.shareId;
+    console.log(getFreeId(sharedNotes))
+    changedNote.shareId = changedNote.isShared ? getFreeId(sharedNotes) : null;
+    updateSharedNotes(changedNote, prevId);
+    setNoteList(newNoteList);
+  };
+
+  const updateSharedNotes = (note, sharedId) => {
+    if (note?.isShared) {
+      const newSharedNote = {
+        id: note.shareId,
+        title: note.title,
+        description: note.description,
+        creation: note.creation,
+      };
+
+      sharedNotes.push(newSharedNote);
+      console.log(sharedNotes);
+
+      setSharedNotes(sharedNotes);
+    } else {
+      //remove
+      const rmIndex = getIndexById(sharedNotes, sharedId);
+
+      if (rmIndex >= 0) {
+        sharedNotes.splice(rmIndex, 1);
+      }
+
+      console.log('unshared -> ', rmIndex);
+      console.log(sharedNotes);
+      setSharedNotes(sharedNotes);
+    }
   };
 
   return (
     <PageLayout>
       <div style={styles.pageBody}>
         <div style={styles.sideNotePanel}>
+          <NotePanelMenu
+            refreshNotes={setNoteList}
+            displayNotes={setDisplayedNotes}
+            notes={noteList}
+          />
           <NoteList
             style={styles.noteList}
-            notes={noteList}
+            notes={displayedNotes}
+            baseNotes={noteList}
             onSelect={onSelectNote}
             activeNote={activeNote}
+            onChangedOrder={(notes) => setNoteList(notes)}
           />
-          <Button
-            onClick={() => {
-              signOut();
-            }}
-            style={styles.logOutButton}
-            title="Log out"
-          >
-            <ExitToApp style={styles.logOutIcon} />
-          </Button>
         </div>
         <div style={styles.sideInfoDisplay}>
           <DisplayedNote
             activeNote={activeNote}
             isEditing={isEditOn}
             setEditing={setEditMode}
+            refreshNotes={setNoteList}
+            onDeleted={() => setActiveNote(null)}
+            notes={noteList}
+            onSharedChanged={onSharedChanged}
           />
           <div
             style={{
@@ -89,7 +149,6 @@ const MyNotes = ({ loggedInUser, signOut }) => {
 
 MyNotes.propTypes = {
   loggedInUser: PropTypes.object.isRequired,
-  signOut: PropTypes.func.isRequired,
 };
 
-export default connect(mapStatetoProps, mapDispatchToProps)(MyNotes);
+export default connect(mapStateToProps, mapDispatchToProps)(MyNotes);

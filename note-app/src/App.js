@@ -20,8 +20,14 @@ import { CURRENT_USER_CELL, ROUTES } from './config/constants';
 import { authorizeReducer } from './utils/reducers';
 import { getCurrentUser } from './utils/selectors';
 import { authWatcher } from './utils/saga/auth';
+import {
+  getLocalSharedNotes,
+  setLocalSharedNotes,
+} from './utils/localStorage/index';
 
 function App() {
+  const [sharedNotes, setSharedNotes] = useState(getLocalSharedNotes());
+
   const [isLoggedIn, setLoggedIn] = useState(
     JSON.parse(localStorage.getItem(CURRENT_USER_CELL)) ? true : false
   );
@@ -29,6 +35,11 @@ function App() {
   const initialState = {
     loggedInUser: JSON.parse(localStorage.getItem(CURRENT_USER_CELL)),
     isLoggedIn: isLoggedIn,
+    sharedNotes: sharedNotes,
+    setSharedNotes: (notes) => {
+      setSharedNotes(notes);
+      setLocalSharedNotes(notes);
+    },
   };
 
   const sagaMiddleware = createSagaMiddleware();

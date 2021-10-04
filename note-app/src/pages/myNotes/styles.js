@@ -3,6 +3,8 @@ export const styles = {
     width: '25vw',
     minWidth: '280px',
     margin: '0 auto',
+    height: '80vh',
+    overflowY: 'scroll',
   },
 
   sideInfoDisplay: {
@@ -17,7 +19,6 @@ export const styles = {
 
   pageBody: {
     display: 'flex',
-    minHeight: '100vh',
   },
 
   editPanelWrapper: {
@@ -26,16 +27,5 @@ export const styles = {
     borderRadius: '5px',
     transition: 'box-shadow 0.3s',
     backgroundColor: '#333333',
-  },
-
-  logOutButton: {
-    borderRadius: '50%',
-  },
-
-  logOutIcon: {
-    color: '#609BEB',
-    width: '32px',
-    height: '32px',
-    margin: '10px',
   },
 };

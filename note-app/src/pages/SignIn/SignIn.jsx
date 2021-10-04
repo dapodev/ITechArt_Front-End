@@ -10,7 +10,7 @@ import Snackbar from '../../components/Snackbar/Snackbar';
 import { styles } from './styles';
 import { Button } from '@material-ui/core';
 import { ROUTES, SNACKBAR_DURATION } from '../../config/constants';
-import { mapStatetoProps } from '../../utils/maps/mapStateToProps';
+import { mapStateToProps } from '../../utils/maps/mapStateToProps';
 import { mapDispatchToProps } from '../../utils/maps/mapDispatchToProps';
 
 const SignIn = ({ isLoggedIn, signInRequest }) => {
@@ -99,4 +99,4 @@ SignIn.propTypes = {
   signInRequest: PropTypes.func.isRequired,
 };
 
-export default connect(mapStatetoProps, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

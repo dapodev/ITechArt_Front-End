@@ -1,6 +1,6 @@
 export const styles = {
   pageContent: {
-    minWidth: '100%',
+    width: '100%',
     padding: 0,
   },
 
@@ -15,5 +15,26 @@ export const styles = {
     borderRadius: '50%',
     position: 'relative',
     zIndex: '1000',
+  },
+
+  wrapper: {
+    height: '100vh',
+    overflow: 'hidden',
+  },
+
+  logOutButton: {
+    borderRadius: '50%',
+  },
+
+  logOutIcon: {
+    color: '#609BEB',
+    width: '32px',
+    height: '32px',
+    margin: '10px',
+  },
+
+  topMenu: {
+    display: 'flex',
+    justifyContent: 'space-between'
   },
 };
