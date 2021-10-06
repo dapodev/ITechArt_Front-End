@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel ./src -d build -s",
+    "build": "npm run clean && babel ./src -d build -s",
+    "clean": "if exist build rd /s /q build",
     "start": "npm run build && node ./build/app.js"
   },
   "author": "apolo",
