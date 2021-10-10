@@ -1,4 +1,5 @@
 import {
+  ID_PATTERN,
   MAX_DESCRIPTION_LENGTH,
   MIN_DESCRIPTION_LENGTH,
   MIN_TITLE_LENGTH,
@@ -22,17 +23,27 @@ const generateValidationResult = () => {
 export const validateId = (id) => {
   const result = generateValidationResult();
 
-  if (id === undefined) {
-    result.isValid = false;
-    result.message = 'No note id provided.';
-  } else if (Number.isInteger(id)) {
-    if (id < 0) {
+  switch (typeof id) {
+    case 'number':
+      if (id < 0) {
+        result.isValid = false;
+        result.message = "Note ID can't be a negative value.";
+      }
+      break;
+    case 'string':
+      if (ID_PATTERN.test(id)) {
+        if (+id < 0) {
+          result.isValid = false;
+          result.message = "Note ID can't be a negative value.";
+        }
+      } else {
+        result.isValid = false;
+        result.message = "Note ID can't be converted to a number value.";
+      }
+      break;
+    default:
       result.isValid = false;
-      result.message = "Note ID can't be a negative value.";
-    }
-  } else {
-    result.isValid = false;
-    result.message = 'Note ID is not a number.';
+      result.message = 'No note id provided.';
   }
 
   return result;
