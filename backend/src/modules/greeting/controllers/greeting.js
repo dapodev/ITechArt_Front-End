@@ -1,6 +1,6 @@
-import { STATUS_CODES } from '../../config/constants';
+import { STATUS_CODES } from '../../../config/constants';
 
-const greetings = (request, response) => {
+const greeting = (request, response) => {
   const { name } = request.query;
   
   if (name) {
@@ -24,4 +24,4 @@ const greetings = (request, response) => {
   }
 };
 
-export default greetings;
+export default greeting;
