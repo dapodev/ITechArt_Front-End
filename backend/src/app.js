@@ -3,9 +3,12 @@ const app = express();
 
 import greetingRouter from './modules/greeting/routes';
 import notesRouter from './modules/notes/routes';
+import requestLog from './utils/log/requestLog';
 import { PORT } from './config/constants';
 
 app.use(express.json());
+
+app.use(requestLog);
 
 app.use('/api/greetings', greetingRouter);
 
