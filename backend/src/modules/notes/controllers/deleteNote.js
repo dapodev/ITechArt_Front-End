@@ -1,5 +1,5 @@
 import CommonError from '../../../errors/CommonError';
-import STATUS_CODES from '../../config/STATUS_CODES';
+import STATUS_CODES from '../../config/constants/statusCodes';
 import { isInteger } from '../../../utils/typeChecks';
 import { removeNote } from '../../../db/providers/notes';
 

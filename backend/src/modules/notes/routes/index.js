@@ -1,5 +1,7 @@
 import express from 'express';
 
+import connect from '../../../db/connection/connect';
+import commonErrorHandler from '../../../errors/handlers/commonErrorHandler';
 import { addNoteValidations, updateNoteValidations } from '../validations';
 import { getNotes, addNote, deleteNote, updateNote } from '../controllers';
 

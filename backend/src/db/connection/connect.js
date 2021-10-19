@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { CONNECTION_URI } from '../../config/database';
-import STATUS_CODES from '../../modules/config/STATUS_CODES';
+import STATUS_CODES from '../../modules/config/constants/statusCodes';
 
 const connect = async (req, res, next) => {
   try {

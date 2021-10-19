@@ -1,6 +1,6 @@
 import Note from './../models/Note';
 import CommonError from '../../errors/CommonError';
-import STATUS_CODES from '../../modules/config/STATUS_CODES';
+import STATUS_CODES from '../../modules/config/constants/statusCodes';
 
 export const getAllNotes = async () => {
   return await Note.find({});
