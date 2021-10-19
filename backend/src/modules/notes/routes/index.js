@@ -1,11 +1,7 @@
 import express from 'express';
 
-import getNotes from '../controllers/getNotes';
-import addNote from '../controllers/addNote';
-import updateNote from '../controllers/updateNote';
-import deleteNote from '../controllers/deleteNote';
-import addNoteValidations from '../validations/addNoteValidations';
-import updateNoteValidations from '../validations/updateNoteValidations';
+import { addNoteValidations, updateNoteValidations } from '../validations';
+import { getNotes, addNote, deleteNote, updateNote } from '../controllers';
 
 const notesRouter = express.Router();
 
