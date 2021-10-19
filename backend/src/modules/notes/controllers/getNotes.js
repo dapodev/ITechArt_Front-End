@@ -1,9 +1,12 @@
-const getNotes = (req, res) => {
-  // some logics later;
+import { getAllNotes } from '../../../db/providers/notes';
 
-  const notes = [];
-
-  res.json(notes);
+const getNotes = async (req, res, next) => {
+  try {
+    const notes = await getAllNotes();
+    res.json(notes);
+  } catch (err) {
+    next(err);
+  }
 };
 
 export default getNotes;

@@ -1,11 +1,31 @@
-const deleteNote = (req, res) => {
-  // some logics here later;
+import CommonError from '../../../errors/CommonError';
+import STATUS_CODES from '../../config/constants/statusCodes';
+import { isInteger } from '../../../utils/typeChecks';
+import { removeNote } from '../../../db/providers/notes';
 
+const deleteNote = async (req, res, next) => {
   const { id } = req.params;
 
-  const responseBody = { success: true, id: id };
-
-  res.json(responseBody);
+  try {
+    if (isInteger(id)) {
+      const parsedId = parseInt(id);
+      const responseBody = { success: true, id: parsedId };
+      try {
+        await removeNote(parsedId);
+      } catch {
+        responseBody.success = false;
+      } finally {
+        res.json(responseBody);
+      }
+    } else {
+      throw new CommonError(
+        'Could not convert provided value to int.',
+        STATUS_CODES.clientErrors.INVALID_REQUEST
+      );
+    }
+  } catch (err) {
+    next(err);
+  }
 };
 
 export default deleteNote;
