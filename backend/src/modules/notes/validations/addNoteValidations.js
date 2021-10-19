@@ -1,4 +1,4 @@
-import STATUS_CODES from '../../config/STATUS_CODES';
+import STATUS_CODES from '../../config/constants/statusCodes';
 import {
   generateErrors,
   validateDate,
@@ -37,9 +37,9 @@ const addNoteValidations = (req, res, next) => {
   }
 
   const updatedAtValidation = validateDate(updatedAt);
-  if(!updatedAtValidation.isValid) {
-      errors.hasErrors = true;
-      errors.updatedAt = updatedAtValidation.message;
+  if (!updatedAtValidation.isValid) {
+    errors.hasErrors = true;
+    errors.updatedAt = updatedAtValidation.message;
   }
 
   if (errors.hasErrors) {

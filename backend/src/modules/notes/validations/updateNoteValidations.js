@@ -1,4 +1,4 @@
-import STATUS_CODES from '../../config/STATUS_CODES';
+import STATUS_CODES from '../../config/constants/statusCodes';
 import {
   generateErrors,
   validateId,
