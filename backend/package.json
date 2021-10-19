@@ -17,10 +17,11 @@
     "node": "14.16.0"
   },
   "dependencies": {
-    "express": "^4.17.1",
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6"
+    "@babel/preset-env": "^7.15.6",
+    "express": "^4.17.1",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@babel/node": "^7.15.4",
