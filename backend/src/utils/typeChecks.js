@@ -10,3 +10,16 @@ export const isInteger = (value) => {
       return false;
   }
 };
+
+export const isDate = (value) => {
+  let isCorrect = true;
+  if (value === undefined) {
+    isCorrect = false;
+  } else {
+    const parsed = Date.parse(value);
+    if (Number.isNaN(parsed)) {
+      isCorrect = false;
+    }
+  }
+  return isCorrect;
+};

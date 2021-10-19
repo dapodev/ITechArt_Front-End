@@ -1,9 +1,21 @@
 import Note from './../models/Note';
 import CommonError from '../../errors/CommonError';
 import STATUS_CODES from '../../modules/config/constants/statusCodes';
+import { PAGINATION_SIZE } from '../../modules/config/constants';
 
 export const getAllNotes = async () => {
   return await Note.find({});
+};
+
+export const getNotesByPage = async (page) => {
+  const allNotes = await getAllNotes();
+
+  const indexFrom = (page - 1) * PAGINATION_SIZE;
+  const indexTo = page * PAGINATION_SIZE - 1;
+
+  const pageNotes = allNotes.splice(indexFrom, indexTo);
+
+  return pageNotes;
 };
 
 export const insertNote = async (note) => {
