@@ -47,7 +47,9 @@ const getFilteredNotes = async (dateFrom, dateTo, name) => {
   }
 
   if (name && typeof name === 'string') {
-    filteredNotes = filteredNotes.filter((note) => note.title.includes(name));
+    filteredNotes = filteredNotes.filter((note) =>
+      note.title.toLowerCase().includes(name.toLowerCase())
+    );
   }
 
   return filteredNotes;
