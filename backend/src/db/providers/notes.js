@@ -7,8 +7,8 @@ export const getAllNotes = async () => {
   return await Note.find({});
 };
 
-export const getNotesByPage = async (page) => {
-  const allNotes = await getAllNotes();
+export const getNotesByPage = async (page, notes) => {
+  const allNotes = notes ? notes : await getAllNotes();
 
   const indexFrom = (page - 1) * PAGINATION_SIZE;
   const indexTo = page * PAGINATION_SIZE - 1;
