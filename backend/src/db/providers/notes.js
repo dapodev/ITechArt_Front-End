@@ -2,23 +2,34 @@ import Note from './../models/Note';
 import CommonError from '../../errors/CommonError';
 import STATUS_CODES from '../../modules/config/constants/statusCodes';
 import { PAGINATION_SIZE } from '../../modules/config/constants';
+import { isDate } from '../../utils/typeChecks';
 
 export const getAllNotes = async () => {
-  return await Note.find({});
+  return await Note.find({ deleted: false });
 };
 
-export const getNotesByPage = async (page, notes) => {
-  const allNotes = notes ? notes : await getAllNotes();
+export const getNotesByPage = async (page, filters) => {
+  const result = await Note.find({
+    deleted: false,
+    title: {
+      $regex: filters.name || '',
+      $options: 'i',
+    },
+    createdAt: {
+      $gte: new Date(isDate(filters.dateFrom) ? filters.dateFrom : null),
+      $lte: isDate(filters.dateTo) ? new Date(filters.dateTo) : new Date(),
+    },
+  })
+    .limit(PAGINATION_SIZE)
+    .skip((page - 1) * PAGINATION_SIZE);
 
-  const indexFrom = (page - 1) * PAGINATION_SIZE;
-
-  const pageNotes = allNotes.splice(indexFrom, PAGINATION_SIZE);
-
-  return pageNotes;
+  return result;
 };
 
 export const insertNote = async (note) => {
-  if (await Note.findOne({ id: note.id })) {
+  const duplicate = await Note.findOne({ id: note.id, deleted: false });
+
+  if (duplicate) {
     throw new CommonError(
       'Insert: ID already exists.',
       STATUS_CODES.clientErrors.INVALID_REQUEST
@@ -29,8 +40,15 @@ export const insertNote = async (note) => {
 };
 
 export const removeNote = async (id) => {
-  if (await Note.findOne({ id: id })) {
-    await Note.deleteOne({ id: id });
+  const noteToRemove = await Note.findOne({ id: id, deleted: false });
+
+  if (noteToRemove) {
+    await Note.updateOne(
+      { id: id, deleted: false },
+      {
+        deleted: true,
+      }
+    );
   } else {
     throw new CommonError(
       'Delete: No notes with provided ID found.',
@@ -42,7 +60,7 @@ export const removeNote = async (id) => {
 export const updateNote = async (id, data) => {
   if (await Note.findOne({ id: id })) {
     await Note.updateOne(
-      { id: id },
+      { id: id, deleted: false },
       {
         title: data.title,
         description: data.description,

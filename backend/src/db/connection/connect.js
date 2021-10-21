@@ -1,6 +1,8 @@
-import mongoose from 'mongoose';
-import { CONNECTION_URI } from '../../config/database';
+import mongoose from 'mongoose'; // make absolute pathes
+
+import { CONNECTION_URI } from '../../config/database.js';
 import STATUS_CODES from '../../modules/config/constants/statusCodes';
+// import STATUS_CODES from 'modules/config/constants/statusCodes';
 
 const connect = async (req, res, next) => {
   try {
