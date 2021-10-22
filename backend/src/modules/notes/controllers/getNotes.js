@@ -1,7 +1,8 @@
-import CommonError from '../../../errors/CommonError';
 import STATUS_CODES from '../../config/constants/statusCodes';
-import { getNotesByPage } from '../../../db/providers/notes';
-import { isInteger } from '../../../utils/typeChecks';
+
+import CommonError from 'errors/CommonError';
+import { getNotesByPage } from 'db/providers/notes';
+import { isInteger } from 'utils/typeChecks';
 
 const getNotes = async (req, res, next) => {
   const { page = 1 } = req.query;

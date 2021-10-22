@@ -1,8 +1,9 @@
-import Note from './../models/Note';
-import CommonError from '../../errors/CommonError';
-import STATUS_CODES from '../../modules/config/constants/statusCodes';
-import { PAGINATION_SIZE } from '../../modules/config/constants';
-import { isDate } from '../../utils/typeChecks';
+import Note from '../models/Note';
+
+import STATUS_CODES from 'modules/config/constants/statusCodes';
+import { PAGINATION_SIZE } from 'modules/config/constants';
+import CommonError from 'errors/CommonError';
+import { isDate } from 'utils/typeChecks';
 
 export const getAllNotes = async () => {
   return await Note.find({ deleted: false });

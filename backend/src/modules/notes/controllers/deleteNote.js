@@ -1,7 +1,8 @@
-import CommonError from '../../../errors/CommonError';
 import STATUS_CODES from '../../config/constants/statusCodes';
-import { isInteger } from '../../../utils/typeChecks';
-import { removeNote as deleteNoteProvider } from '../../../db/providers/notes';
+
+import CommonError from 'errors/CommonError';
+import { isInteger } from 'utils/typeChecks';
+import { removeNote as deleteNoteProvider } from 'db/providers/notes';
 
 const deleteNote = async (req, res, next) => {
   const { id } = req.params;

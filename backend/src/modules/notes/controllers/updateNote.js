@@ -1,4 +1,4 @@
-import { updateNote as updateNoteProvider } from '../../../db/providers/notes';
+import { updateNote as updateNoteProvider } from 'db/providers/notes';
 
 const updateNote = async (req, res, next) => {
   const { title, description, createdAt, updatedAt } = req.body;
