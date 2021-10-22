@@ -1,7 +1,7 @@
 import CommonError from '../../../errors/CommonError';
 import STATUS_CODES from '../../config/constants/statusCodes';
 import { isInteger } from '../../../utils/typeChecks';
-import { removeNote } from '../../../db/providers/notes';
+import { removeNote as deleteNoteProvider } from '../../../db/providers/notes';
 
 const deleteNote = async (req, res, next) => {
   const { id } = req.params;
@@ -11,7 +11,7 @@ const deleteNote = async (req, res, next) => {
       const parsedId = parseInt(id);
       const responseBody = { success: true, id: parsedId };
       try {
-        await removeNote(parsedId);
+        await deleteNoteProvider(parsedId);
       } catch {
         responseBody.success = false;
       } finally {

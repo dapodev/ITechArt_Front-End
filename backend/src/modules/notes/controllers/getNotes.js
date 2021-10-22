@@ -10,9 +10,8 @@ const getNotes = async (req, res, next) => {
   const filters = { dateFrom, dateTo, name };
 
   try {
-    if (isInteger(page) && +page > 0) {
-      const parsedPageNumber = +page;
-
+    let parsedPageNumber = isInteger(page) ? parseInt(page) : -1;
+    if (parsedPageNumber > 0) {
       const notesPayload = await getNotesByPage(parsedPageNumber, filters);
 
       res.json(notesPayload);

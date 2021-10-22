@@ -1,4 +1,4 @@
-import { updateNote as updNote } from '../../../db/providers/notes';
+import { updateNote as updateNoteProvider } from '../../../db/providers/notes';
 
 const updateNote = async (req, res, next) => {
   const { title, description, createdAt, updatedAt } = req.body;
@@ -7,9 +7,14 @@ const updateNote = async (req, res, next) => {
   try {
     const parsedId = parseInt(id);
 
-    await updNote(parsedId, { title, description, createdAt, updatedAt });
+    const updatedNote = await updateNoteProvider(parsedId, {
+      title,
+      description,
+      createdAt,
+      updatedAt,
+    });
 
-    res.json({ parsedId, title, description, createdAt, updatedAt });
+    res.json(updatedNote);
   } catch (err) {
     next(err);
   }

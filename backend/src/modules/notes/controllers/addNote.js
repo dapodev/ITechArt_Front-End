@@ -1,4 +1,4 @@
-import { insertNote } from './../../../db/providers/notes';
+import { insertNote as addNoteProvider } from './../../../db/providers/notes';
 
 const addNote = async (req, res, next) => {
   const { id, title, description, createdAt, updatedAt } = req.body;
@@ -12,8 +12,8 @@ const addNote = async (req, res, next) => {
   };
 
   try {
-    await insertNote(note);
-    res.json({ id, title, description, createdAt, updatedAt });
+    const newNote = await addNoteProvider(note);
+    res.json(newNote);
   } catch (err) {
     next(err);
   }

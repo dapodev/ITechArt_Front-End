@@ -27,16 +27,20 @@ export const getNotesByPage = async (page, filters) => {
 };
 
 export const insertNote = async (note) => {
-  const duplicate = await Note.findOne({ id: note.id, deleted: false });
+  const originNote = await Note.findOne({ id: note.id, deleted: false });
 
-  if (duplicate) {
+  let insertedNote;
+
+  if (originNote) {
     throw new CommonError(
       'Insert: ID already exists.',
       STATUS_CODES.clientErrors.INVALID_REQUEST
     );
   } else {
-    await Note.create(note);
+    insertedNote = await Note.create(note);
   }
+
+  return insertedNote;
 };
 
 export const removeNote = async (id) => {
@@ -44,7 +48,7 @@ export const removeNote = async (id) => {
 
   if (noteToRemove) {
     await Note.updateOne(
-      { id: id, deleted: false },
+      { id: noteToRemove.id, deleted: false },
       {
         deleted: true,
       }
@@ -55,12 +59,18 @@ export const removeNote = async (id) => {
       STATUS_CODES.clientErrors.INVALID_REQUEST
     );
   }
+
+  return noteToRemove;
 };
 
 export const updateNote = async (id, data) => {
-  if (await Note.findOne({ id: id })) {
+  const originNote = await Note.findOne({ id: id, deleted: false });
+
+  let updatedNote;
+
+  if (originNote) {
     await Note.updateOne(
-      { id: id, deleted: false },
+      { id: originNote.id, deleted: false },
       {
         title: data.title,
         description: data.description,
@@ -68,10 +78,14 @@ export const updateNote = async (id, data) => {
         updatedAt: data.updatedAt,
       }
     );
+
+    updatedNote = Note.findOne({ id: id, deleted: false });
   } else {
     throw new CommonError(
       'Update: No notes with provided ID found.',
       STATUS_CODES.clientErrors.INVALID_REQUEST
     );
   }
+
+  return updatedNote;
 };
