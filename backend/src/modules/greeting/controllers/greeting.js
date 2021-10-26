@@ -2,7 +2,7 @@ import { STATUS_CODES } from '../../../config/constants';
 
 const greeting = (request, response) => {
   const { name } = request.query;
-  
+
   if (name) {
     const htmlResponse = `
         <h1>
