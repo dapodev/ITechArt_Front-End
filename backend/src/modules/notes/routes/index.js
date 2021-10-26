@@ -5,6 +5,7 @@ import { getNotes, addNote, deleteNote, updateNote } from '../controllers';
 
 import connect from 'db/connection/connect';
 import commonErrorHandler from 'errors/handlers/commonErrorHandler';
+import { addDevPostfix, addTestPostfix } from 'utils/env';
 
 const notesRouter = express.Router();
 
@@ -12,7 +13,12 @@ notesRouter.use(connect);
 
 notesRouter.get('/', getNotes);
 
-notesRouter.post('/', addNoteValidations, addNote);
+notesRouter.post(
+  '/',
+  addNoteValidations,
+  [addDevPostfix, addTestPostfix],
+  addNote
+);
 
 notesRouter.put('/:id', updateNoteValidations, updateNote);
 
