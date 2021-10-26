@@ -1,6 +1,9 @@
 import express from 'express';
 const app = express();
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 import greetingRouter from './modules/greeting/routes';
 import notesRouter from './modules/notes/routes';
 import requestLog from './utils/log/requestLog';
